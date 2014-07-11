@@ -43,7 +43,7 @@
     if (!self) return(nil);
     
     
-    //Instantiate helicaopter and missle arrays
+    //Instantiate helicaopter and missile arrays
     _helicopters = [[NSMutableArray alloc] init];
     _missiles = [[NSMutableArray alloc] init];
     
@@ -171,30 +171,30 @@
     //Set _missle sprite to shell image
     CCSprite *_missile = [CCSprite spriteWithImageNamed:@"shell.png"];
     
-    //setup the location of initial missle launch
+    //setup the location of initial missile launch
     _missile.position = ccp(20, 15);
     
-    //Get the offset of missle to the Touch Location
+    //Get the offset of missile to the Touch Location
     CGPoint offset = ccpSub(touchLoc, _missile.position);
     
     //Verify touchpoint is valid location on viewable area
     if (offset.x <= 0) return;
     
-    //Add the missle to the view
+    //Add the missile to the view
     [self addChild:_missile];
     
     [_missiles addObject:_missile];
     
     
-    //Get the launch point of the missle and the touch from user interaction
-    //launch missle to touch point
+    //Get the launch point of the missile and the touch from user interaction
+    //launch missile to touch point
     
     int actualXLoc = viewableArea.width + (_missile.contentSize.width/2);
     float ratio = (float) offset.y / (float) offset.x;
     int actualYLoc = (actualXLoc * ratio) + _missile.position.y;
     CGPoint destination = ccp(actualXLoc, actualYLoc);
     
-    //Get the x and y offset location from the touch point and the origination location of missle.
+    //Get the x and y offset location from the touch point and the origination location of missile.
     int offsetActualXLoc = actualXLoc - _missile.position.x;
     int offsetActualYLoc = actualYLoc - _missile.position.y;
     
@@ -216,16 +216,16 @@
 -(void)update:(CCTime)delta{
     //Instantiatr delete missles array
     NSMutableArray *deleteMissles = [[NSMutableArray alloc] init];
-    //loop through missle array and instantiate deleted helicopter array
-    for (CCSprite *missle in _missiles){
+    //loop through missile array and instantiate deleted helicopter array
+    for (CCSprite *missile in _missiles){
         
         NSMutableArray *deleteHelis = [[NSMutableArray alloc] init];
         
-        //loop through helicopters and detect collision based on bounding box of missle and helicopter,
+        //loop through helicopters and detect collision based on bounding box of missile and helicopter,
         //add helicopters to delete array when collision detected
         for (CCSprite *helis in _helicopters) {
             
-            if (CGRectIntersectsRect(missle.boundingBox, helis.boundingBox)) {
+            if (CGRectIntersectsRect(missile.boundingBox, helis.boundingBox)) {
                  [[OALSimpleAudio sharedInstance] playBg:@"boom6.wav" loop:NO];
                 [deleteHelis addObject:helis];
                 
@@ -239,17 +239,17 @@
             [self removeChild:heli cleanup:YES];
             
         }
-        //if every helicopter has been removed from delete helis array add missles to delete missle array
+        //if every helicopter has been removed from delete helis array add missiles to delete missile array
         if (deleteHelis.count > 0) {
             
-            [deleteMissles addObject:missle];
+            [deleteMissles addObject:missile];
         }
     }
-    //loop through delete missles and remove each missle object
-    for(CCSprite *missle in deleteMissles){
+    //loop through delete missiles and remove each missile object
+    for(CCSprite *missile in deleteMissles){
         
-        [_missiles removeObject:missle];
-        [self removeChild:missle cleanup:YES];
+        [_missiles removeObject:missile];
+        [self removeChild:missile cleanup:YES];
     }
 }
 
