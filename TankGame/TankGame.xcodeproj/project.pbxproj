@@ -212,6 +212,14 @@
 		338F300D196DA1860044C7BD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F300C196DA1860044C7BD /* AppDelegate.m */; };
 		338F3010196DA1860044C7BD /* HelloWorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F300F196DA1860044C7BD /* HelloWorldScene.m */; };
 		338F3013196DA1860044C7BD /* IntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 338F3012196DA1860044C7BD /* IntroScene.m */; };
+		33912DF9196F443400AD6342 /* chopper.png in Resources */ = {isa = PBXBuildFile; fileRef = 33912DF6196F443400AD6342 /* chopper.png */; };
+		33912DFA196F443400AD6342 /* shell.png in Resources */ = {isa = PBXBuildFile; fileRef = 33912DF7196F443400AD6342 /* shell.png */; };
+		33912DFB196F443400AD6342 /* CompleteTank.png in Resources */ = {isa = PBXBuildFile; fileRef = 33912DF8196F443400AD6342 /* CompleteTank.png */; };
+		33912DFD196F5AA100AD6342 /* aexp2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33912DFC196F5AA100AD6342 /* aexp2.wav */; };
+		33912DFF196F5B2C00AD6342 /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33912DFE196F5B2C00AD6342 /* explosion.wav */; };
+		33912E01196F5CB000AD6342 /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 33912E00196F5CB000AD6342 /* explosion.mp3 */; };
+		33912E03196F5CEB00AD6342 /* missle_launch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 33912E02196F5CEB00AD6342 /* missle_launch.mp3 */; };
+		33912E05196F5F1C00AD6342 /* boom6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33912E04196F5F1C00AD6342 /* boom6.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -653,6 +661,14 @@
 		338F300F196DA1860044C7BD /* HelloWorldScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HelloWorldScene.m; path = Classes/HelloWorldScene.m; sourceTree = "<group>"; };
 		338F3011196DA1860044C7BD /* IntroScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IntroScene.h; path = Classes/IntroScene.h; sourceTree = "<group>"; };
 		338F3012196DA1860044C7BD /* IntroScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IntroScene.m; path = Classes/IntroScene.m; sourceTree = "<group>"; };
+		33912DF6196F443400AD6342 /* chopper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chopper.png; sourceTree = "<group>"; };
+		33912DF7196F443400AD6342 /* shell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shell.png; sourceTree = "<group>"; };
+		33912DF8196F443400AD6342 /* CompleteTank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CompleteTank.png; sourceTree = "<group>"; };
+		33912DFC196F5AA100AD6342 /* aexp2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = aexp2.wav; sourceTree = "<group>"; };
+		33912DFE196F5B2C00AD6342 /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
+		33912E00196F5CB000AD6342 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
+		33912E02196F5CEB00AD6342 /* missle_launch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = missle_launch.mp3; sourceTree = "<group>"; };
+		33912E04196F5F1C00AD6342 /* boom6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = boom6.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -724,6 +740,11 @@
 		338F2D7C196DA1830044C7BD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				33912E04196F5F1C00AD6342 /* boom6.wav */,
+				33912E02196F5CEB00AD6342 /* missle_launch.mp3 */,
+				33912E00196F5CB000AD6342 /* explosion.mp3 */,
+				33912DFE196F5B2C00AD6342 /* explosion.wav */,
+				33912DFC196F5AA100AD6342 /* aexp2.wav */,
 				338F2D7D196DA1830044C7BD /* Default.png */,
 				338F2D7F196DA1830044C7BD /* Default@2x.png */,
 				338F2D81196DA1830044C7BD /* Default-568h@2x.png */,
@@ -739,6 +760,9 @@
 		338F2D85196DA1830044C7BD /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				33912DF6196F443400AD6342 /* chopper.png */,
+				33912DF7196F443400AD6342 /* shell.png */,
+				33912DF8196F443400AD6342 /* CompleteTank.png */,
 				338F2D86196DA1830044C7BD /* Icon.png */,
 				338F2D88196DA1830044C7BD /* Icon@2x.png */,
 				338F2D8A196DA1830044C7BD /* Icon-72.png */,
@@ -1625,18 +1649,26 @@
 				338F2D9B196DA1830044C7BD /* Icon-Small@2x.png in Resources */,
 				338F2D8D196DA1830044C7BD /* Icon-72@2x.png in Resources */,
 				338F2D7E196DA1830044C7BD /* Default.png in Resources */,
+				33912DF9196F443400AD6342 /* chopper.png in Resources */,
+				33912E05196F5F1C00AD6342 /* boom6.wav in Resources */,
 				338F2D87196DA1830044C7BD /* Icon.png in Resources */,
+				33912DFD196F5AA100AD6342 /* aexp2.wav in Resources */,
 				338F2D95196DA1830044C7BD /* Icon-iPad-Spotlight-iOS7@2x.png in Resources */,
 				338F2D84196DA1830044C7BD /* Default-Landscape~ipad.png in Resources */,
 				338F2D99196DA1830044C7BD /* Icon-Small.png in Resources */,
 				338F2D97196DA1830044C7BD /* Icon-Small-50.png in Resources */,
 				338F2F80196DA1850044C7BD /* LICENSE_Kazmath.txt in Resources */,
+				33912DFA196F443400AD6342 /* shell.png in Resources */,
 				338F2D8B196DA1830044C7BD /* Icon-72.png in Resources */,
 				338F2ED9196DA1850044C7BD /* LICENSE_cocos2d.txt in Resources */,
 				338F2D82196DA1830044C7BD /* Default-568h@2x.png in Resources */,
 				338F2DA2196DA1830044C7BD /* iTunesArtwork in Resources */,
+				33912E03196F5CEB00AD6342 /* missle_launch.mp3 in Resources */,
 				338F2D9D196DA1830044C7BD /* Icon-Spotlight-iOS7.png in Resources */,
+				33912DFB196F443400AD6342 /* CompleteTank.png in Resources */,
 				338F2D91196DA1830044C7BD /* Icon-76@2x.png in Resources */,
+				33912DFF196F5B2C00AD6342 /* explosion.wav in Resources */,
+				33912E01196F5CB000AD6342 /* explosion.mp3 in Resources */,
 				338F3005196DA1860044C7BD /* LICENSE_Chipmunk.txt in Resources */,
 				338F2D9F196DA1830044C7BD /* Icon-Spotlight-iOS7@2x.png in Resources */,
 				338F2D8F196DA1830044C7BD /* Icon-76.png in Resources */,
@@ -1989,6 +2021,7 @@
 				338F3018196DA1860044C7BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		338F3019196DA1860044C7BD /* Build configuration list for PBXNativeTarget "TankGame" */ = {
 			isa = XCConfigurationList;
@@ -1997,6 +2030,7 @@
 				338F301B196DA1860044C7BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
