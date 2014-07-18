@@ -69,13 +69,14 @@
     [self addChild:_tank];
     
     
+    
     //Back/Exit button to bring user back to the main menu or main launch screen of the game
     CCButton *backButton = [CCButton buttonWithTitle:@"[ Quit ]" fontName:@"Verdana-Bold" fontSize:18.0f];
     backButton.positionType = CCPositionTypeNormalized;
     backButton.position = ccp(0.85f, 0.95f); // Top Right of screen
     [backButton setTarget:self selector:@selector(onBackClicked:)];
     [self addChild:backButton];
-
+    
     // done
 	return self;
 }
@@ -119,18 +120,27 @@
     
     
     CCActionMoveTo *moveHeli = [CCActionMoveTo actionWithDuration:actualSpeed position:ccp(-helicopter.contentSize.width/2, actualLoc)];
-
     
-    [helicopter runAction:[CCActionSequence actions:moveHeli, nil, nil]];
+    //Run action of moving helicopter and Call block to remove helicsopter from parent when not in view.
+    
+    [helicopter runAction:[CCActionSequence actions:moveHeli, [CCActionCallBlock actionWithBlock:^{
+        CCNode *node = helicopter;
+        //Remove helicopter from parent.
+        [node removeFromParentAndCleanup:YES];
+        
+    }], nil]];
+    
     
 }
+
+
 
 
 // -----------------------------------------------------------------------
 
 - (void)dealloc
 {
-
+    
 }
 
 // -----------------------------------------------------------------------
@@ -161,7 +171,7 @@
 // -----------------------------------------------------------------------
 
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-
+    
     //Get screne touches and locations
     //UITouch *touch = [touch anyObject];
     CGPoint touchLoc = [touch locationInNode:self];
@@ -180,11 +190,16 @@
     //Verify touchpoint is valid location on viewable area
     if (offset.x <= 0) return;
     
-    //Add the missile to the view
-    [self addChild:_missile];
+    //Make sure touch point is not the reload tank point (touching the tank) before launching missle
     
-    [_missiles addObject:_missile];
-    
+    if(!CGRectContainsPoint(_tank.boundingBox, touchLoc)){
+        //Add the missile to the view
+        [self addChild:_missile];
+        
+        [_missiles addObject:_missile];
+        
+        
+    }
     
     //Get the launch point of the missile and the touch from user interaction
     //launch missile to touch point
@@ -202,13 +217,32 @@
     float veloc = 480/1;
     float duration = length/veloc;
     
+    
+    
     //Launch missle to desination of touch point by user.
     CCActionMoveTo *launchMissle = [CCActionMoveTo actionWithDuration:duration position:destination];
-    [_missile runAction:[CCActionSequence actions:launchMissle, nil, nil]];
-
     
+    //Run action of launching missile and Call block to remove missile from parent when not in view.
+    [_missile runAction:[CCActionSequence actions:launchMissle, [CCActionCallBlock actionWithBlock:^{
+        
+        
+        //Remove missile from parent
+        CCNode *node = _missile;
+        [node removeFromParentAndCleanup:YES];
+        
+    }], nil]];
+    
+    
+    
+    //[self removeChild:_missile];
     [[OALSimpleAudio sharedInstance] playBg:@"aexp2.wav" loop:NO];
-
+    
+    
+    if(CGRectContainsPoint(_tank.textureRect, touchLoc)){
+        
+        [[OALSimpleAudio sharedInstance] playBg:@"tank_reload.mp3" loop:NO];
+    }
+    
 }
 
 
@@ -226,7 +260,7 @@
         for (CCSprite *helis in _helicopters) {
             
             if (CGRectIntersectsRect(missile.boundingBox, helis.boundingBox)) {
-                 [[OALSimpleAudio sharedInstance] playBg:@"boom6.wav" loop:NO];
+                [[OALSimpleAudio sharedInstance] playBg:@"boom6.wav" loop:NO];
                 [deleteHelis addObject:helis];
                 
             }
