@@ -221,6 +221,10 @@
 		33912E01196F5CB000AD6342 /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 33912E00196F5CB000AD6342 /* explosion.mp3 */; };
 		33912E03196F5CEB00AD6342 /* missle_launch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 33912E02196F5CEB00AD6342 /* missle_launch.mp3 */; };
 		33912E05196F5F1C00AD6342 /* boom6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33912E04196F5F1C00AD6342 /* boom6.wav */; };
+		33C7421F198040FF009BB6D0 /* helicopters-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33C7421B198040FF009BB6D0 /* helicopters-hd.plist */; };
+		33C74220198040FF009BB6D0 /* helicopters-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33C7421C198040FF009BB6D0 /* helicopters-hd.png */; };
+		33C74221198040FF009BB6D0 /* helicopters-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33C7421D198040FF009BB6D0 /* helicopters-ipadhd.plist */; };
+		33C74222198040FF009BB6D0 /* helicopters-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33C7421E198040FF009BB6D0 /* helicopters-ipadhd.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -671,6 +675,10 @@
 		33912E00196F5CB000AD6342 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
 		33912E02196F5CEB00AD6342 /* missle_launch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = missle_launch.mp3; sourceTree = "<group>"; };
 		33912E04196F5F1C00AD6342 /* boom6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = boom6.wav; sourceTree = "<group>"; };
+		33C7421B198040FF009BB6D0 /* helicopters-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "helicopters-hd.plist"; path = "Resources/helicopters-hd.plist"; sourceTree = "<group>"; };
+		33C7421C198040FF009BB6D0 /* helicopters-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "helicopters-hd.png"; path = "Resources/helicopters-hd.png"; sourceTree = "<group>"; };
+		33C7421D198040FF009BB6D0 /* helicopters-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "helicopters-ipadhd.plist"; path = "Resources/helicopters-ipadhd.plist"; sourceTree = "<group>"; };
+		33C7421E198040FF009BB6D0 /* helicopters-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "helicopters-ipadhd.png"; path = "Resources/helicopters-ipadhd.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -742,6 +750,10 @@
 		338F2D7C196DA1830044C7BD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				33C7421B198040FF009BB6D0 /* helicopters-hd.plist */,
+				33C7421C198040FF009BB6D0 /* helicopters-hd.png */,
+				33C7421D198040FF009BB6D0 /* helicopters-ipadhd.plist */,
+				33C7421E198040FF009BB6D0 /* helicopters-ipadhd.png */,
 				335653781978A3AB0038BB6C /* tank_reload.mp3 */,
 				33912E04196F5F1C00AD6342 /* boom6.wav */,
 				33912E02196F5CEB00AD6342 /* missle_launch.mp3 */,
@@ -1652,8 +1664,10 @@
 				338F2D9B196DA1830044C7BD /* Icon-Small@2x.png in Resources */,
 				338F2D8D196DA1830044C7BD /* Icon-72@2x.png in Resources */,
 				338F2D7E196DA1830044C7BD /* Default.png in Resources */,
+				33C74221198040FF009BB6D0 /* helicopters-ipadhd.plist in Resources */,
 				33912DF9196F443400AD6342 /* chopper.png in Resources */,
 				33912E05196F5F1C00AD6342 /* boom6.wav in Resources */,
+				33C7421F198040FF009BB6D0 /* helicopters-hd.plist in Resources */,
 				335653791978A3AB0038BB6C /* tank_reload.mp3 in Resources */,
 				338F2D87196DA1830044C7BD /* Icon.png in Resources */,
 				33912DFD196F5AA100AD6342 /* aexp2.wav in Resources */,
@@ -1661,6 +1675,7 @@
 				338F2D84196DA1830044C7BD /* Default-Landscape~ipad.png in Resources */,
 				338F2D99196DA1830044C7BD /* Icon-Small.png in Resources */,
 				338F2D97196DA1830044C7BD /* Icon-Small-50.png in Resources */,
+				33C74222198040FF009BB6D0 /* helicopters-ipadhd.png in Resources */,
 				338F2F80196DA1850044C7BD /* LICENSE_Kazmath.txt in Resources */,
 				33912DFA196F443400AD6342 /* shell.png in Resources */,
 				338F2D8B196DA1830044C7BD /* Icon-72.png in Resources */,
@@ -1674,6 +1689,7 @@
 				33912DFF196F5B2C00AD6342 /* explosion.wav in Resources */,
 				33912E01196F5CB000AD6342 /* explosion.mp3 in Resources */,
 				338F3005196DA1860044C7BD /* LICENSE_Chipmunk.txt in Resources */,
+				33C74220198040FF009BB6D0 /* helicopters-hd.png in Resources */,
 				338F2D9F196DA1830044C7BD /* Icon-Spotlight-iOS7@2x.png in Resources */,
 				338F2D8F196DA1830044C7BD /* Icon-76.png in Resources */,
 				338F2F65196DA1850044C7BD /* ChangeLog in Resources */,
