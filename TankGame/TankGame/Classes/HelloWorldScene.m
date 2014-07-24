@@ -25,6 +25,9 @@
     CCButton *pauseButton;
     CCButton *backButton;
     CCButton *resumeButton;
+    CCLabelTTF *scoreLabel;
+    CCLabelTTF *scoreCount;
+    int hits;
     
 }
 
@@ -45,6 +48,8 @@
     self = [super init];
     if (!self) return(nil);
     
+    //Initiate hits counter to 0
+    hits = 0;
     
     //Instantiate helicaopter and missile arrays
     _helicopters = [[NSMutableArray alloc] init];
@@ -84,9 +89,16 @@
     //Pause button
     pauseButton = [CCButton buttonWithTitle:@"Pause" fontName:@"Verdana-Bold" fontSize:16.0f];
     pauseButton.positionType = CCPositionTypeNormalized;
-    pauseButton.position = ccp(0.75f, 0.95f); // Top Right of screen
+    pauseButton.position = ccp(0.70f, 0.95f); // Top Right of screen
     [pauseButton setTarget:self selector:@selector(onPauseClicked:)];
     [self addChild:pauseButton];
+    
+    //Add score Label to view
+    scoreLabel = [CCLabelTTF labelWithString:@"Score: 0" fontName:@"Verdana-Bold" fontSize:16.0f];
+    scoreLabel.positionType = CCPositionTypeNormalized;
+    scoreLabel.position = ccp(0.15f, 0.95f);
+
+    [self addChild:scoreLabel];
     
     // done
 	return self;
@@ -273,6 +285,15 @@
             if (CGRectIntersectsRect(missile.boundingBox, helis.boundingBox)) {
                 [[OALSimpleAudio sharedInstance] playBg:@"boom6.wav" loop:NO];
                 [deleteHelis addObject:helis];
+                
+                //Increase hits
+                hits++;
+                
+                //Multiply hits by 10 to get totalScore
+                int scoreTotal = hits * 10;
+                //Update ScoreLabel with string to include scoreTotal
+                [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", scoreTotal]];
+ 
                 
             }
         }
