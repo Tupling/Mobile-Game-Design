@@ -22,6 +22,9 @@
     NSMutableArray *_missiles;
     NSMutableArray *_helicopters;
     CGSize viewableArea;
+    CCButton *pauseButton;
+    CCButton *backButton;
+    CCButton *resumeButton;
     
 }
 
@@ -71,11 +74,19 @@
     
     
     //Back/Exit button to bring user back to the main menu or main launch screen of the game
-    CCButton *backButton = [CCButton buttonWithTitle:@"[ Quit ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+    backButton = [CCButton buttonWithTitle:@"Quit" fontName:@"Verdana-Bold" fontSize:16.0f];
     backButton.positionType = CCPositionTypeNormalized;
     backButton.position = ccp(0.85f, 0.95f); // Top Right of screen
     [backButton setTarget:self selector:@selector(onBackClicked:)];
     [self addChild:backButton];
+    
+    
+    //Pause button
+    pauseButton = [CCButton buttonWithTitle:@"Pause" fontName:@"Verdana-Bold" fontSize:16.0f];
+    pauseButton.positionType = CCPositionTypeNormalized;
+    pauseButton.position = ccp(0.75f, 0.95f); // Top Right of screen
+    [pauseButton setTarget:self selector:@selector(onPauseClicked:)];
+    [self addChild:pauseButton];
     
     // done
 	return self;
@@ -297,6 +308,45 @@
     // back to intro scene with transition
     [[CCDirector sharedDirector] replaceScene:[IntroScene scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
+}
+
+//Method for pausing game
+- (void)onPauseClicked:(id)sender
+{
+    
+    //Put game in animation on Pause
+    [[CCDirector sharedDirector] pause];
+    
+    //Hide both quit and pause buttong
+    [self removeChild:pauseButton];
+    [self removeChild:backButton];
+    
+    //Resume button
+    resumeButton = [CCButton buttonWithTitle:@"Resume" fontName:@"Verdana-Bold" fontSize:22.0f];
+    resumeButton.positionType = CCPositionTypeNormalized;
+    resumeButton.position = ccp(0.50f, 0.50f); // Top Right of screen
+    [resumeButton setTarget:self selector:@selector(resumeGamePlay:)];
+    [self addChild:resumeButton];
+    
+    
+}
+
+
+//Resume Gameplay
+- (void)resumeGamePlay:(id)sender
+{
+    
+    //Resume Game Animations
+    [[CCDirector sharedDirector] resume];
+    
+    //Show buttons
+    [self addChild:pauseButton];
+    [self addChild:backButton];
+    
+    //Remove Resume Button
+    [self removeChild:resumeButton];
+    
+    
 }
 
 // -----------------------------------------------------------------------
