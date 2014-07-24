@@ -26,8 +26,9 @@
     CCButton *backButton;
     CCButton *resumeButton;
     CCLabelTTF *scoreLabel;
-    CCLabelTTF *scoreCount;
+    CCLabelTTF *missedHelis;
     int hits;
+    int misses;
     
 }
 
@@ -50,6 +51,8 @@
     
     //Initiate hits counter to 0
     hits = 0;
+    //3 missed helicopters equals game over
+    misses = 3;
     
     //Instantiate helicaopter and missile arrays
     _helicopters = [[NSMutableArray alloc] init];
@@ -100,6 +103,15 @@
 
     [self addChild:scoreLabel];
     
+    
+    //Missed Helis Label
+    //Add score Label to view
+    missedHelis = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Misses: %d", misses] fontName:@"Verdana-Bold" fontSize:16.0f];
+    missedHelis.positionType = CCPositionTypeNormalized;
+    missedHelis.position = ccp(0.90f, 0.05f);
+    
+    [self addChild:missedHelis];
+    
     // done
 	return self;
 }
@@ -149,6 +161,8 @@
     [helicopter runAction:[CCActionSequence actions:moveHeli, [CCActionCallBlock actionWithBlock:^{
         CCNode *node = helicopter;
         //Remove helicopter from parent.
+        misses--;
+        [missedHelis setString:[NSString stringWithFormat:@"Misses: %d", misses]];
         [node removeFromParentAndCleanup:YES];
         
     }], nil]];
@@ -293,6 +307,8 @@
                 int scoreTotal = hits * 10;
                 //Update ScoreLabel with string to include scoreTotal
                 [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", scoreTotal]];
+                
+
  
                 
             }
