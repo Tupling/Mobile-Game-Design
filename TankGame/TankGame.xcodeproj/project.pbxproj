@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EF7E95C1981C3530003B2E5 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7E95B1981C3530003B2E5 /* GameOverScene.m */; };
 		335653791978A3AB0038BB6C /* tank_reload.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 335653781978A3AB0038BB6C /* tank_reload.mp3 */; };
 		338F2D64196DA1830044C7BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338F2D63196DA1830044C7BD /* QuartzCore.framework */; };
 		338F2D66196DA1830044C7BD /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338F2D65196DA1830044C7BD /* OpenGLES.framework */; };
@@ -238,6 +239,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1EF7E95A1981C3530003B2E5 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		1EF7E95B1981C3530003B2E5 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		335653781978A3AB0038BB6C /* tank_reload.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tank_reload.mp3; sourceTree = "<group>"; };
 		338F2D60196DA1830044C7BD /* TankGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TankGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338F2D63196DA1830044C7BD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1585,6 +1588,8 @@
 				338F300F196DA1860044C7BD /* HelloWorldScene.m */,
 				338F3011196DA1860044C7BD /* IntroScene.h */,
 				338F3012196DA1860044C7BD /* IntroScene.m */,
+				1EF7E95A1981C3530003B2E5 /* GameOverScene.h */,
+				1EF7E95B1981C3530003B2E5 /* GameOverScene.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1823,6 +1828,7 @@
 				338F2DC6196DA1840044C7BD /* CCAnimationCache.m in Sources */,
 				338F2F4A196DA1850044C7BD /* CCTableView.m in Sources */,
 				338F300D196DA1860044C7BD /* AppDelegate.m in Sources */,
+				1EF7E95C1981C3530003B2E5 /* GameOverScene.m in Sources */,
 				338F2DDD196DA1840044C7BD /* CCDrawingPrimitives.m in Sources */,
 				338F2ECE196DA1850044C7BD /* TGAlib.m in Sources */,
 				338F2E9A196DA1850044C7BD /* UITouch+CC.m in Sources */,

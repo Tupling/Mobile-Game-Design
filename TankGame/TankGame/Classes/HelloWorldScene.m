@@ -9,6 +9,8 @@
 
 #import "HelloWorldScene.h"
 #import "IntroScene.h"
+#import "GameOverScene.h"
+#import "CCAnimation.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -79,6 +81,8 @@
     _tank.position  = ccp(20, 15);
     [self addChild:_tank];
     
+
+    
     
     
     //Back/Exit button to bring user back to the main menu or main launch screen of the game
@@ -99,7 +103,7 @@
     //Add score Label to view
     scoreLabel = [CCLabelTTF labelWithString:@"Score: 0" fontName:@"Verdana-Bold" fontSize:16.0f];
     scoreLabel.positionType = CCPositionTypeNormalized;
-    scoreLabel.position = ccp(0.15f, 0.95f);
+    scoreLabel.position = ccp(0.10f, 0.95f);
 
     [self addChild:scoreLabel];
     
@@ -130,22 +134,43 @@
 
 -(void)addHelis {
     
+    //Set up SpriteSheet Animation
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"helicopters.plist"];
+    
+    //Setup Batch Node
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"helicopters.png"];
+    [self addChild:spriteSheet];
+    //Setup array of frames (Animations)
+    NSMutableArray *flyAnimation = [NSMutableArray array];
+    for (int i = 1; i <= 4; i++){
+        [flyAnimation addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"chopper%d.png", i]]];
+    }
+    
+    CCAnimation *fly = [CCAnimation
+                            animationWithSpriteFrames:flyAnimation delay:0.1f];
+    CCSpriteFrame *chopper = [CCSpriteFrame frameWithImageNamed:@"chopper1.png"];
     //set sprite image
-    CCSprite *helicopter = [CCSprite spriteWithImageNamed:@"chopper.png"];
+   self.helicopter = [CCSprite spriteWithSpriteFrame:chopper];
     
     
     //set heli spawn location
     //gernates random height location to spawn helicopter on the right side of the viewable area
     viewableArea = [[CCDirector sharedDirector] viewSize];
-    int locMinY = helicopter.contentSize.height/2;
-    int locMaxY = viewableArea.height - helicopter.contentSize.height/2;
+    int locMinY = self.helicopter.contentSize.height/2;
+    int locMaxY = viewableArea.height - self.helicopter.contentSize.height/2;
     int rangeY = locMaxY - locMinY;
     int actualLoc = (arc4random() % rangeY) + locMinY;
     
-    helicopter.position = ccp(viewableArea.width + helicopter.contentSize.width/2, actualLoc);
-    [self addChild:helicopter];
+    self.helicopter.position = ccp(viewableArea.width + self.helicopter.contentSize.width/2, actualLoc);
     
-    [_helicopters addObject:helicopter];
+    self.flyAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:fly]];
+    [self.helicopter runAction:self.flyAction];
+    
+    [spriteSheet addChild:self.helicopter];
+    
+    //[self addChild:helicopter];
+    
+    [_helicopters addObject:self.helicopter];
     
     //set minimum and maximum speeds of helicopter
     int minSpeed = 3.0;
@@ -154,16 +179,21 @@
     int actualSpeed = (arc4random() % rangeDuration) + minSpeed;
     
     
-    CCActionMoveTo *moveHeli = [CCActionMoveTo actionWithDuration:actualSpeed position:ccp(-helicopter.contentSize.width/2, actualLoc)];
+    CCActionMoveTo *moveHeli = [CCActionMoveTo actionWithDuration:actualSpeed position:ccp(-self.helicopter.contentSize.width/2, actualLoc)];
     
     //Run action of moving helicopter and Call block to remove helicsopter from parent when not in view.
     
-    [helicopter runAction:[CCActionSequence actions:moveHeli, [CCActionCallBlock actionWithBlock:^{
-        CCNode *node = helicopter;
+    [self.helicopter runAction:[CCActionSequence actions:moveHeli, [CCActionCallBlock actionWithBlock:^{
+        CCNode *node = self.helicopter;
         //Remove helicopter from parent.
         misses--;
         [missedHelis setString:[NSString stringWithFormat:@"Misses: %d", misses]];
         [node removeFromParentAndCleanup:YES];
+        
+        if (misses == 0) {
+            CCScene *gameOver = [GameOverScene winningScene:NO];
+            [[CCDirector sharedDirector] replaceScene:gameOver];
+        }
         
     }], nil]];
     
@@ -299,7 +329,7 @@
             if (CGRectIntersectsRect(missile.boundingBox, helis.boundingBox)) {
                 [[OALSimpleAudio sharedInstance] playBg:@"boom6.wav" loop:NO];
                 [deleteHelis addObject:helis];
-                
+              
                 //Increase hits
                 hits++;
                 
@@ -308,6 +338,11 @@
                 //Update ScoreLabel with string to include scoreTotal
                 [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", scoreTotal]];
                 
+                if (scoreTotal == 100) {
+                    CCScene *gameOver = [GameOverScene winningScene:YES];
+                    [[CCDirector sharedDirector] replaceScene:gameOver];
+                }
+                
 
  
                 
@@ -315,10 +350,10 @@
         }
         //loop through delete helicopters array and remove the helicopter object one by one
         for(CCSprite *heli in deleteHelis){
-            
+            CCNode *node = heli;
             [_helicopters removeObject: heli];
-            
-            [self removeChild:heli cleanup:YES];
+            [node removeFromParentAndCleanup:YES];
+
             
         }
         //if every helicopter has been removed from delete helis array add missiles to delete missile array
@@ -329,9 +364,9 @@
     }
     //loop through delete missiles and remove each missile object
     for(CCSprite *missile in deleteMissles){
-        
+        CCNode *node = missile;
         [_missiles removeObject:missile];
-        [self removeChild:missile cleanup:YES];
+        [node removeFromParentAndCleanup:YES];
     }
 }
 

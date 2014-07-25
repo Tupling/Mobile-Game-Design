@@ -4,70 +4,70 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>chopper1.gif</key>
+            <key>chopper1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{86,2},{26,12}}</string>
+                <string>{{296,2},{96,44}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{26,12}}</string>
+                <string>{{0,0},{96,44}}</string>
                 <key>sourceSize</key>
-                <string>{26,12}</string>
+                <string>{96,44}</string>
             </dict>
-            <key>chopper2.gif</key>
+            <key>chopper2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{58,2},{26,12}}</string>
+                <string>{{198,2},{96,44}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{26,12}}</string>
+                <string>{{0,0},{96,44}}</string>
                 <key>sourceSize</key>
-                <string>{26,12}</string>
+                <string>{96,44}</string>
             </dict>
-            <key>chopper3.gif</key>
+            <key>chopper3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{30,2},{26,12}}</string>
+                <string>{{100,2},{96,44}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{26,12}}</string>
+                <string>{{0,0},{96,44}}</string>
                 <key>sourceSize</key>
-                <string>{26,12}</string>
+                <string>{96,44}</string>
             </dict>
-            <key>chopper4.gif</key>
+            <key>chopper4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{30,2},{26,12}}</string>
+                <string>{{100,2},{96,44}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{26,12}}</string>
+                <string>{{0,0},{96,44}}</string>
                 <key>sourceSize</key>
-                <string>{26,12}</string>
+                <string>{96,44}</string>
             </dict>
-            <key>chopper5.gif</key>
+            <key>chopper5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{26,12}}</string>
+                <string>{{2,2},{96,44}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{26,12}}</string>
+                <string>{{0,0},{96,44}}</string>
                 <key>sourceSize</key>
-                <string>{26,12}</string>
+                <string>{96,44}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -77,9 +77,9 @@
             <key>realTextureFileName</key>
             <string>helicopters-hd.png</string>
             <key>size</key>
-            <string>{114,16}</string>
+            <string>{394,48}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9fa62e60730e8e7f7d96f7ae19a29f6b:e016fc7f6698cf8700f715999a5c5b9b:1026b50c6b9eee2415647de1ed650715$</string>
+            <string>$TexturePacker:SmartUpdate:be0f2dc971055b449a12b66a8ead965a:85a02987fe9f4b0f62f27cd08df7d50e:1026b50c6b9eee2415647de1ed650715$</string>
             <key>textureFileName</key>
             <string>helicopters-hd.png</string>
         </dict>

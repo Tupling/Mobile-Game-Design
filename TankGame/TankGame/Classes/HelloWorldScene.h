@@ -20,6 +20,9 @@
 
 // -----------------------------------------------------------------------
 
+@property(nonatomic, strong) CCSprite *helicopter;
+@property(nonatomic, strong) CCAction *flyAction;
+
 + (HelloWorldScene *)scene;
 - (id)init;
 
