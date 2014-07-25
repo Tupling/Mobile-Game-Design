@@ -38,7 +38,7 @@
         gameCondition = @"You failed! Letting 3 Choppers Escape";
     }
     
-    CCLabelTTF *gameStatus = [CCLabelTTF labelWithString:gameCondition fontName:@"Chalkduster" fontSize:22.0f];
+    CCLabelTTF *gameStatus = [CCLabelTTF labelWithString:gameCondition fontName:@"Chalkduster" fontSize:18.0f];
     gameStatus.position = ccp(viewSize.width/2, viewSize.height/2);
     gameStatus.color = [CCColor whiteColor];
     [self addChild:gameStatus];

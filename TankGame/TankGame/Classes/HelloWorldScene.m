@@ -81,7 +81,7 @@
     _tank.position  = ccp(20, 15);
     [self addChild:_tank];
     
-
+    
     
     
     
@@ -104,7 +104,7 @@
     scoreLabel = [CCLabelTTF labelWithString:@"Score: 0" fontName:@"Verdana-Bold" fontSize:16.0f];
     scoreLabel.positionType = CCPositionTypeNormalized;
     scoreLabel.position = ccp(0.10f, 0.95f);
-
+    
     [self addChild:scoreLabel];
     
     
@@ -145,12 +145,14 @@
     for (int i = 1; i <= 4; i++){
         [flyAnimation addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"chopper%d.png", i]]];
     }
-    
+    //Create Animation
     CCAnimation *fly = [CCAnimation
-                            animationWithSpriteFrames:flyAnimation delay:0.1f];
+                        animationWithSpriteFrames:flyAnimation delay:0.1f];
+    
+    //Set sprite frame
     CCSpriteFrame *chopper = [CCSpriteFrame frameWithImageNamed:@"chopper1.png"];
     //set sprite image
-   self.helicopter = [CCSprite spriteWithSpriteFrame:chopper];
+    self.helicopter = [CCSprite spriteWithSpriteFrame:chopper];
     
     
     //set heli spawn location
@@ -166,9 +168,10 @@
     self.flyAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:fly]];
     [self.helicopter runAction:self.flyAction];
     
+    
+    //Add helicopter to spritesheet
     [spriteSheet addChild:self.helicopter];
     
-    //[self addChild:helicopter];
     
     [_helicopters addObject:self.helicopter];
     
@@ -184,12 +187,18 @@
     //Run action of moving helicopter and Call block to remove helicsopter from parent when not in view.
     
     [self.helicopter runAction:[CCActionSequence actions:moveHeli, [CCActionCallBlock actionWithBlock:^{
-        CCNode *node = self.helicopter;
-        //Remove helicopter from parent.
+
+
         misses--;
+        
         [missedHelis setString:[NSString stringWithFormat:@"Misses: %d", misses]];
+        
+        //Remove helicopter from parent.
+        
+        CCNode *node = spriteSheet;
         [node removeFromParentAndCleanup:YES];
         
+        //Set losing condition
         if (misses == 0) {
             CCScene *gameOver = [GameOverScene winningScene:NO];
             [[CCDirector sharedDirector] replaceScene:gameOver];
@@ -329,7 +338,7 @@
             if (CGRectIntersectsRect(missile.boundingBox, helis.boundingBox)) {
                 [[OALSimpleAudio sharedInstance] playBg:@"boom6.wav" loop:NO];
                 [deleteHelis addObject:helis];
-              
+                
                 //Increase hits
                 hits++;
                 
@@ -343,8 +352,8 @@
                     [[CCDirector sharedDirector] replaceScene:gameOver];
                 }
                 
-
- 
+                
+                
                 
             }
         }
@@ -353,7 +362,7 @@
             CCNode *node = heli;
             [_helicopters removeObject: heli];
             [node removeFromParentAndCleanup:YES];
-
+            
             
         }
         //if every helicopter has been removed from delete helis array add missiles to delete missile array
