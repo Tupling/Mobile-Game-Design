@@ -10,6 +10,8 @@
 // Import the interfaces
 #import "IntroScene.h"
 #import "HelloWorldScene.h"
+#import "GameCredits.h"
+
 
 // -----------------------------------------------------------------------
 #pragma mark - IntroScene
@@ -39,18 +41,25 @@
     [self addChild:background];
     
     // Hello world
-    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Tank Game" fontName:@"Chalkduster" fontSize:36.0f];
+    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Tank Game" fontName:@"Chalkduster" fontSize:38.0f];
     label.positionType = CCPositionTypeNormalized;
     label.color = [CCColor redColor];
-    label.position = ccp(0.5f, 0.5f); // Middle of screen
+    label.position = ccp(0.5f, 0.80f); // Middle of screen
     [self addChild:label];
     
     // Helloworld scene button
     CCButton *helloWorldButton = [CCButton buttonWithTitle:@"[ Play ]" fontName:@"Verdana-Bold" fontSize:18.0f];
     helloWorldButton.positionType = CCPositionTypeNormalized;
-    helloWorldButton.position = ccp(0.5f, 0.35f);
-    [helloWorldButton setTarget:self selector:@selector(onSpinningClicked:)];
+    helloWorldButton.position = ccp(0.5f, 0.5f);
+    [helloWorldButton setTarget:self selector:@selector(onPlayClicked:)];
     [self addChild:helloWorldButton];
+    
+    //Credits Button
+    CCButton *gameCreditsButton = [CCButton buttonWithTitle:@"[ Credits ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+    gameCreditsButton.positionType = CCPositionTypeNormalized;
+    gameCreditsButton.position = ccp(0.5f, 0.25f);
+    [gameCreditsButton setTarget:self selector:@selector(onCreditsClicked:)];
+    [self addChild:gameCreditsButton];
 
     // done
 	return self;
@@ -60,10 +69,17 @@
 #pragma mark - Button Callbacks
 // -----------------------------------------------------------------------
 
-- (void)onSpinningClicked:(id)sender
+- (void)onPlayClicked:(id)sender
 {
     // start spinning scene with transition
     [[CCDirector sharedDirector] replaceScene:[HelloWorldScene scene]
+                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:1.0f]];
+}
+
+- (void)onCreditsClicked:(id)sender
+{
+    // start spinning scene with transition
+    [[CCDirector sharedDirector] replaceScene:[GameCredits scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:1.0f]];
 }
 

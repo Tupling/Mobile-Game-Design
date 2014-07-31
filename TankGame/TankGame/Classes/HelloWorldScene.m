@@ -82,9 +82,6 @@
     [self addChild:_tank];
     
     
-    
-    
-    
     //Back/Exit button to bring user back to the main menu or main launch screen of the game
     backButton = [CCButton buttonWithTitle:@"Quit" fontName:@"Verdana-Bold" fontSize:16.0f];
     backButton.positionType = CCPositionTypeNormalized;
