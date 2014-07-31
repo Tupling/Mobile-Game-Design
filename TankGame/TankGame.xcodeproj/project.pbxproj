@@ -218,9 +218,6 @@
 		33912DFA196F443400AD6342 /* shell.png in Resources */ = {isa = PBXBuildFile; fileRef = 33912DF7196F443400AD6342 /* shell.png */; };
 		33912DFB196F443400AD6342 /* CompleteTank.png in Resources */ = {isa = PBXBuildFile; fileRef = 33912DF8196F443400AD6342 /* CompleteTank.png */; };
 		33912DFD196F5AA100AD6342 /* aexp2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33912DFC196F5AA100AD6342 /* aexp2.wav */; };
-		33912DFF196F5B2C00AD6342 /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33912DFE196F5B2C00AD6342 /* explosion.wav */; };
-		33912E01196F5CB000AD6342 /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 33912E00196F5CB000AD6342 /* explosion.mp3 */; };
-		33912E03196F5CEB00AD6342 /* missle_launch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 33912E02196F5CEB00AD6342 /* missle_launch.mp3 */; };
 		33912E05196F5F1C00AD6342 /* boom6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33912E04196F5F1C00AD6342 /* boom6.wav */; };
 		33A3760D198AAE2B00015BEB /* GameCredits.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A3760C198AAE2A00015BEB /* GameCredits.m */; };
 		33A37610198ABE8200015BEB /* SplashScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A3760F198ABE8200015BEB /* SplashScene.m */; };
@@ -676,9 +673,6 @@
 		33912DF7196F443400AD6342 /* shell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shell.png; sourceTree = "<group>"; };
 		33912DF8196F443400AD6342 /* CompleteTank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CompleteTank.png; sourceTree = "<group>"; };
 		33912DFC196F5AA100AD6342 /* aexp2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = aexp2.wav; sourceTree = "<group>"; };
-		33912DFE196F5B2C00AD6342 /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
-		33912E00196F5CB000AD6342 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
-		33912E02196F5CEB00AD6342 /* missle_launch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = missle_launch.mp3; sourceTree = "<group>"; };
 		33912E04196F5F1C00AD6342 /* boom6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = boom6.wav; sourceTree = "<group>"; };
 		33A3760B198AAE2A00015BEB /* GameCredits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCredits.h; sourceTree = "<group>"; };
 		33A3760C198AAE2A00015BEB /* GameCredits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCredits.m; sourceTree = "<group>"; };
@@ -765,9 +759,6 @@
 				33C7421E198040FF009BB6D0 /* helicopters-ipadhd.png */,
 				335653781978A3AB0038BB6C /* tank_reload.mp3 */,
 				33912E04196F5F1C00AD6342 /* boom6.wav */,
-				33912E02196F5CEB00AD6342 /* missle_launch.mp3 */,
-				33912E00196F5CB000AD6342 /* explosion.mp3 */,
-				33912DFE196F5B2C00AD6342 /* explosion.wav */,
 				33912DFC196F5AA100AD6342 /* aexp2.wav */,
 				338F2D7D196DA1830044C7BD /* Default.png */,
 				338F2D7F196DA1830044C7BD /* Default@2x.png */,
@@ -1697,12 +1688,9 @@
 				338F2ED9196DA1850044C7BD /* LICENSE_cocos2d.txt in Resources */,
 				338F2D82196DA1830044C7BD /* Default-568h@2x.png in Resources */,
 				338F2DA2196DA1830044C7BD /* iTunesArtwork in Resources */,
-				33912E03196F5CEB00AD6342 /* missle_launch.mp3 in Resources */,
 				338F2D9D196DA1830044C7BD /* Icon-Spotlight-iOS7.png in Resources */,
 				33912DFB196F443400AD6342 /* CompleteTank.png in Resources */,
 				338F2D91196DA1830044C7BD /* Icon-76@2x.png in Resources */,
-				33912DFF196F5B2C00AD6342 /* explosion.wav in Resources */,
-				33912E01196F5CB000AD6342 /* explosion.mp3 in Resources */,
 				338F3005196DA1860044C7BD /* LICENSE_Chipmunk.txt in Resources */,
 				33C74220198040FF009BB6D0 /* helicopters-hd.png in Resources */,
 				338F2D9F196DA1830044C7BD /* Icon-Spotlight-iOS7@2x.png in Resources */,

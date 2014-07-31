@@ -300,8 +300,13 @@
         
         
         //Remove missile from parent
+    
         CCNode *node = _missile;
-        [node removeFromParentAndCleanup:YES];
+        if (_missile.position.x > viewableArea.width) {
+            [node removeFromParentAndCleanup:YES];
+            NSLog(@"MISSILE REMOVED");
+        }
+
         
     }], nil]];
     
