@@ -41,25 +41,33 @@
     [self addChild:background];
     
     // Hello world
-    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Tank Game" fontName:@"Chalkduster" fontSize:38.0f];
+    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Main Menu" fontName:@"Verdana" fontSize:40.0f];
     label.positionType = CCPositionTypeNormalized;
     label.color = [CCColor redColor];
     label.position = ccp(0.5f, 0.80f); // Middle of screen
     [self addChild:label];
     
     // Helloworld scene button
-    CCButton *helloWorldButton = [CCButton buttonWithTitle:@"[ Play ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+    CCButton *helloWorldButton = [CCButton buttonWithTitle:@" Play " fontName:@"Verdana-Bold" fontSize:30.0f];
     helloWorldButton.positionType = CCPositionTypeNormalized;
-    helloWorldButton.position = ccp(0.5f, 0.5f);
+    helloWorldButton.position = ccp(0.5f, 0.55f);
     [helloWorldButton setTarget:self selector:@selector(onPlayClicked:)];
     [self addChild:helloWorldButton];
     
     //Credits Button
-    CCButton *gameCreditsButton = [CCButton buttonWithTitle:@"[ Credits ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+    CCButton *gameCreditsButton = [CCButton buttonWithTitle:@" Credits " fontName:@"Verdana-Bold" fontSize:18.0f];
     gameCreditsButton.positionType = CCPositionTypeNormalized;
-    gameCreditsButton.position = ccp(0.5f, 0.25f);
+    gameCreditsButton.position = ccp(0.5f, 0.35f);
     [gameCreditsButton setTarget:self selector:@selector(onCreditsClicked:)];
     [self addChild:gameCreditsButton];
+    
+    //Tutorial
+    //Credits Button
+    CCButton *tutorialButton = [CCButton buttonWithTitle:@" Tutorial " fontName:@"Verdana-Bold" fontSize:18.0f];
+    tutorialButton.positionType = CCPositionTypeNormalized;
+    tutorialButton.position = ccp(0.5f, 0.25f);
+    //[tutorialButton setTarget:self selector:@selector(onCreditsClicked:)];
+    [self addChild:tutorialButton];
 
     // done
 	return self;

@@ -223,6 +223,7 @@
 		33912E03196F5CEB00AD6342 /* missle_launch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 33912E02196F5CEB00AD6342 /* missle_launch.mp3 */; };
 		33912E05196F5F1C00AD6342 /* boom6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33912E04196F5F1C00AD6342 /* boom6.wav */; };
 		33A3760D198AAE2B00015BEB /* GameCredits.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A3760C198AAE2A00015BEB /* GameCredits.m */; };
+		33A37610198ABE8200015BEB /* SplashScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A3760F198ABE8200015BEB /* SplashScene.m */; };
 		33C7421F198040FF009BB6D0 /* helicopters-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33C7421B198040FF009BB6D0 /* helicopters-hd.plist */; };
 		33C74220198040FF009BB6D0 /* helicopters-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33C7421C198040FF009BB6D0 /* helicopters-hd.png */; };
 		33C74221198040FF009BB6D0 /* helicopters-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33C7421D198040FF009BB6D0 /* helicopters-ipadhd.plist */; };
@@ -681,6 +682,8 @@
 		33912E04196F5F1C00AD6342 /* boom6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = boom6.wav; sourceTree = "<group>"; };
 		33A3760B198AAE2A00015BEB /* GameCredits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCredits.h; sourceTree = "<group>"; };
 		33A3760C198AAE2A00015BEB /* GameCredits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCredits.m; sourceTree = "<group>"; };
+		33A3760E198ABE8200015BEB /* SplashScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScene.h; sourceTree = "<group>"; };
+		33A3760F198ABE8200015BEB /* SplashScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScene.m; sourceTree = "<group>"; };
 		33C7421B198040FF009BB6D0 /* helicopters-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "helicopters-hd.plist"; path = "Resources/helicopters-hd.plist"; sourceTree = "<group>"; };
 		33C7421C198040FF009BB6D0 /* helicopters-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "helicopters-hd.png"; path = "Resources/helicopters-hd.png"; sourceTree = "<group>"; };
 		33C7421D198040FF009BB6D0 /* helicopters-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "helicopters-ipadhd.plist"; path = "Resources/helicopters-ipadhd.plist"; sourceTree = "<group>"; };
@@ -1595,6 +1598,8 @@
 				1EF7E95B1981C3530003B2E5 /* GameOverScene.m */,
 				33A3760B198AAE2A00015BEB /* GameCredits.h */,
 				33A3760C198AAE2A00015BEB /* GameCredits.m */,
+				33A3760E198ABE8200015BEB /* SplashScene.h */,
+				33A3760F198ABE8200015BEB /* SplashScene.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1849,6 +1854,7 @@
 				338F2F11196DA1850044C7BD /* ALSource.m in Sources */,
 				338F2E19196DA1840044C7BD /* CCParticleSystem.m in Sources */,
 				338F2E3E196DA1840044C7BD /* CCScene.m in Sources */,
+				33A37610198ABE8200015BEB /* SplashScene.m in Sources */,
 				338F2E6C196DA1840044C7BD /* CCTexture.m in Sources */,
 				338F2EFE196DA1850044C7BD /* ALCaptureDevice.m in Sources */,
 				338F2E3A196DA1840044C7BD /* CCResponderManager.m in Sources */,
