@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EF01907198B1D3D00525D7F /* GameTutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF01906198B1D3D00525D7F /* GameTutorial.m */; };
 		1EF7E95C1981C3530003B2E5 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7E95B1981C3530003B2E5 /* GameOverScene.m */; };
 		335653791978A3AB0038BB6C /* tank_reload.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 335653781978A3AB0038BB6C /* tank_reload.mp3 */; };
 		338F2D64196DA1830044C7BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338F2D63196DA1830044C7BD /* QuartzCore.framework */; };
@@ -220,7 +221,6 @@
 		33912DFD196F5AA100AD6342 /* aexp2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33912DFC196F5AA100AD6342 /* aexp2.wav */; };
 		33912E05196F5F1C00AD6342 /* boom6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33912E04196F5F1C00AD6342 /* boom6.wav */; };
 		33A3760D198AAE2B00015BEB /* GameCredits.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A3760C198AAE2A00015BEB /* GameCredits.m */; };
-		33A37610198ABE8200015BEB /* SplashScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A3760F198ABE8200015BEB /* SplashScene.m */; };
 		33C7421F198040FF009BB6D0 /* helicopters-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33C7421B198040FF009BB6D0 /* helicopters-hd.plist */; };
 		33C74220198040FF009BB6D0 /* helicopters-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33C7421C198040FF009BB6D0 /* helicopters-hd.png */; };
 		33C74221198040FF009BB6D0 /* helicopters-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33C7421D198040FF009BB6D0 /* helicopters-ipadhd.plist */; };
@@ -238,6 +238,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1EF01905198B1D3D00525D7F /* GameTutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTutorial.h; sourceTree = "<group>"; };
+		1EF01906198B1D3D00525D7F /* GameTutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTutorial.m; sourceTree = "<group>"; };
 		1EF7E95A1981C3530003B2E5 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		1EF7E95B1981C3530003B2E5 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		335653781978A3AB0038BB6C /* tank_reload.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tank_reload.mp3; sourceTree = "<group>"; };
@@ -676,8 +678,6 @@
 		33912E04196F5F1C00AD6342 /* boom6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = boom6.wav; sourceTree = "<group>"; };
 		33A3760B198AAE2A00015BEB /* GameCredits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCredits.h; sourceTree = "<group>"; };
 		33A3760C198AAE2A00015BEB /* GameCredits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCredits.m; sourceTree = "<group>"; };
-		33A3760E198ABE8200015BEB /* SplashScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScene.h; sourceTree = "<group>"; };
-		33A3760F198ABE8200015BEB /* SplashScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScene.m; sourceTree = "<group>"; };
 		33C7421B198040FF009BB6D0 /* helicopters-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "helicopters-hd.plist"; path = "Resources/helicopters-hd.plist"; sourceTree = "<group>"; };
 		33C7421C198040FF009BB6D0 /* helicopters-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "helicopters-hd.png"; path = "Resources/helicopters-hd.png"; sourceTree = "<group>"; };
 		33C7421D198040FF009BB6D0 /* helicopters-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "helicopters-ipadhd.plist"; path = "Resources/helicopters-ipadhd.plist"; sourceTree = "<group>"; };
@@ -1589,8 +1589,8 @@
 				1EF7E95B1981C3530003B2E5 /* GameOverScene.m */,
 				33A3760B198AAE2A00015BEB /* GameCredits.h */,
 				33A3760C198AAE2A00015BEB /* GameCredits.m */,
-				33A3760E198ABE8200015BEB /* SplashScene.h */,
-				33A3760F198ABE8200015BEB /* SplashScene.m */,
+				1EF01905198B1D3D00525D7F /* GameTutorial.h */,
+				1EF01906198B1D3D00525D7F /* GameTutorial.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1826,6 +1826,7 @@
 				338F2F41196DA1850044C7BD /* CCControlTextureFactory.m in Sources */,
 				338F2DC6196DA1840044C7BD /* CCAnimationCache.m in Sources */,
 				338F2F4A196DA1850044C7BD /* CCTableView.m in Sources */,
+				1EF01907198B1D3D00525D7F /* GameTutorial.m in Sources */,
 				338F300D196DA1860044C7BD /* AppDelegate.m in Sources */,
 				1EF7E95C1981C3530003B2E5 /* GameOverScene.m in Sources */,
 				338F2DDD196DA1840044C7BD /* CCDrawingPrimitives.m in Sources */,
@@ -1842,7 +1843,6 @@
 				338F2F11196DA1850044C7BD /* ALSource.m in Sources */,
 				338F2E19196DA1840044C7BD /* CCParticleSystem.m in Sources */,
 				338F2E3E196DA1840044C7BD /* CCScene.m in Sources */,
-				33A37610198ABE8200015BEB /* SplashScene.m in Sources */,
 				338F2E6C196DA1840044C7BD /* CCTexture.m in Sources */,
 				338F2EFE196DA1850044C7BD /* ALCaptureDevice.m in Sources */,
 				338F2E3A196DA1840044C7BD /* CCResponderManager.m in Sources */,

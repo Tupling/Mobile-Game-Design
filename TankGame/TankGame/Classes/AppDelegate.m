@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "IntroScene.h"
 #import "HelloWorldScene.h"
-#import "SplashScene.h"
+
 
 @implementation AppDelegate
 
@@ -50,7 +50,7 @@
 -(CCScene *)startScene
 {
 	// This method should return the very first scene to be run when your app starts.
-	return [SplashScene scene];
+	return [IntroScene scene];
 }
 
 @end

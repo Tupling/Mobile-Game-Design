@@ -1,5 +1,5 @@
 //
-//  SplashScene.h
+//  GameTutorial.h
 //  TankGame
 //
 //  Created by Dale Tupling on 7/31/14.
@@ -10,10 +10,16 @@
 #import "cocos2d.h"
 #import "cocos2d-ui.h"
 
-@interface SplashScene : CCScene {
+@interface GameTutorial : CCScene {
     
 }
 
-+ (SplashScene *)scene;
+
+@property(nonatomic, strong) CCSprite *helicopter;
+@property(nonatomic, strong) CCAction *flyAction;
+
++ (GameTutorial *)scene;
+- (id)init;
+
 
 @end

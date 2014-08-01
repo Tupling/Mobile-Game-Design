@@ -11,6 +11,7 @@
 #import "IntroScene.h"
 #import "HelloWorldScene.h"
 #import "GameCredits.h"
+#import "GameTutorial.h"
 
 
 // -----------------------------------------------------------------------
@@ -66,7 +67,7 @@
     CCButton *tutorialButton = [CCButton buttonWithTitle:@" Tutorial " fontName:@"Verdana-Bold" fontSize:18.0f];
     tutorialButton.positionType = CCPositionTypeNormalized;
     tutorialButton.position = ccp(0.5f, 0.25f);
-    //[tutorialButton setTarget:self selector:@selector(onCreditsClicked:)];
+    [tutorialButton setTarget:self selector:@selector(onTutorialClicked:)];
     [self addChild:tutorialButton];
 
     // done
@@ -88,6 +89,13 @@
 {
     // start spinning scene with transition
     [[CCDirector sharedDirector] replaceScene:[GameCredits scene]
+                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:1.0f]];
+}
+
+- (void)onTutorialClicked:(id)sender
+{
+    // start spinning scene with transition
+    [[CCDirector sharedDirector] replaceScene:[GameTutorial scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:1.0f]];
 }
 
