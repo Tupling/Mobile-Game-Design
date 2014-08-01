@@ -26,8 +26,20 @@
     CCButton *resumeButton;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *missedHelis;
+    
+    CCSpriteBatchNode *spriteSheet;
+    
     int hits;
     int misses;
+    int missileCount;
+    
+    CCLabelTTF *tutorialLabel;
+    CCButton *okayButton;
+    
+    BOOL sectionOneComplete;
+    BOOL sectionTwoComplete;
+    BOOL sectionThreeComplete;
+    BOOL sectionFourComplete;
     
 }
 
@@ -44,6 +56,14 @@
 
 - (id)init
 {
+    
+    sectionOneComplete = false;
+    sectionTwoComplete = false;
+    sectionThreeComplete = false;
+    sectionFourComplete = false;
+    
+    missileCount = 3;
+    
     // Apple recommend assigning self with supers return value
     self = [super init];
     if (!self) return(nil);
@@ -132,7 +152,7 @@
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"helicopters.plist"];
     
     //Setup Batch Node
-    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"helicopters.png"];
+    spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"helicopters.png"];
     [self addChild:spriteSheet];
     //Setup array of frames (Animations)
     NSMutableArray *flyAnimation = [NSMutableArray array];
@@ -179,6 +199,13 @@
     CCActionMoveTo *moveHeli = [CCActionMoveTo actionWithDuration:actualSpeed position:ccp(-self.helicopter.contentSize.width/2, actualLoc)];
     
     //Run action of moving helicopter and Call block to remove helicsopter from parent when not in view.
+    if (!sectionOneComplete) {
+        
+        [self tutorialPaused:1];
+        
+        sectionOneComplete = true;
+    }
+    
     
     [self.helicopter runAction:[CCActionSequence actions:moveHeli, [CCActionCallBlock actionWithBlock:^{
         
@@ -197,6 +224,15 @@
             CCScene *gameOver = [GameOverScene winningScene:NO];
             [[CCDirector sharedDirector] replaceScene:gameOver];
         }
+        
+        if (!sectionThreeComplete) {
+            if(misses < 3){
+                [self tutorialPaused:3];
+                
+                sectionThreeComplete = true;
+            }
+        }
+        
         
     }], nil]];
     
@@ -242,82 +278,88 @@
 
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     
-    //Get screne touches and locations
-    //UITouch *touch = [touch anyObject];
-    CGPoint touchLoc = [touch locationInNode:self];
-    
-    //Set screneSize to window or view size
-    viewableArea = [[CCDirector sharedDirector] viewSize];
-    //Set _missle sprite to shell image
-    CCSprite *_missile = [CCSprite spriteWithImageNamed:@"shell.png"];
-    
-    //setup the location of initial missile launch
-    _missile.position = ccp(20, 15);
-    
-    //Get the offset of missile to the Touch Location
-    CGPoint offset = ccpSub(touchLoc, _missile.position);
-    
-    //Verify touchpoint is valid location on viewable area
-    if (offset.x <= 0) return;
-    
-    //Make sure touch point is not the reload tank point (touching the tank) before launching missle
-    
-    if(!CGRectContainsPoint(_tank.boundingBox, touchLoc)){
-        //Add the missile to the view
-        [self addChild:_missile];
+    if(missileCount > 0){
         
-        [_missiles addObject:_missile];
+        //Get screne touches and locations
+        //UITouch *touch = [touch anyObject];
+        CGPoint touchLoc = [touch locationInNode:self];
         
+        //Set screneSize to window or view size
+        viewableArea = [[CCDirector sharedDirector] viewSize];
+        //Set _missle sprite to shell image
+        CCSprite *_missile = [CCSprite spriteWithImageNamed:@"shell.png"];
         
-    }
-    
-    //Get the launch point of the missile and the touch from user interaction
-    //launch missile to touch point
-    
-    int actualXLoc = viewableArea.width + (_missile.contentSize.width/2);
-    float ratio = (float) offset.y / (float) offset.x;
-    int actualYLoc = (actualXLoc * ratio) + _missile.position.y;
-    CGPoint destination = ccp(actualXLoc, actualYLoc);
-    
-    //Get the x and y offset location from the touch point and the origination location of missile.
-    int offsetActualXLoc = actualXLoc - _missile.position.x;
-    int offsetActualYLoc = actualYLoc - _missile.position.y;
-    
-    float length = sqrtf((offsetActualXLoc * offsetActualXLoc) + (offsetActualYLoc * offsetActualYLoc));
-    float veloc = 480/1;
-    float duration = length/veloc;
-    
-    
-    
-    //Launch missle to desination of touch point by user.
-    CCActionMoveTo *launchMissle = [CCActionMoveTo actionWithDuration:duration position:destination];
-    
-    //Run action of launching missile and Call block to remove missile from parent when not in view.
-    [_missile runAction:[CCActionSequence actions:launchMissle, [CCActionCallBlock actionWithBlock:^{
+        //setup the location of initial missile launch
+        _missile.position = ccp(20, 15);
         
+        //Get the offset of missile to the Touch Location
+        CGPoint offset = ccpSub(touchLoc, _missile.position);
         
-        //Remove missile from parent
+        //Verify touchpoint is valid location on viewable area
+        if (offset.x <= 0) return;
         
-        CCNode *node = _missile;
-        if (_missile.position.x > viewableArea.width) {
-            [node removeFromParentAndCleanup:YES];
-            NSLog(@"MISSILE REMOVED");
+        //Make sure touch point is not the reload tank point (touching the tank) before launching missle
+        
+        if(!CGRectContainsPoint(_tank.boundingBox, touchLoc)){
+            //Add the missile to the view
+            [self addChild:_missile];
+            
+            [_missiles addObject:_missile];
+            
+            
+            
         }
         
+        //Get the launch point of the missile and the touch from user interaction
+        //launch missile to touch point
         
-    }], nil]];
-    
-    
-    
-    //[self removeChild:_missile];
-    [[OALSimpleAudio sharedInstance] playBg:@"aexp2.wav" loop:NO];
-    
-    
-    if(CGRectContainsPoint(_tank.textureRect, touchLoc)){
+        int actualXLoc = viewableArea.width + (_missile.contentSize.width/2);
+        float ratio = (float) offset.y / (float) offset.x;
+        int actualYLoc = (actualXLoc * ratio) + _missile.position.y;
+        CGPoint destination = ccp(actualXLoc, actualYLoc);
         
-        [[OALSimpleAudio sharedInstance] playBg:@"tank_reload.mp3" loop:NO];
+        //Get the x and y offset location from the touch point and the origination location of missile.
+        int offsetActualXLoc = actualXLoc - _missile.position.x;
+        int offsetActualYLoc = actualYLoc - _missile.position.y;
+        
+        float length = sqrtf((offsetActualXLoc * offsetActualXLoc) + (offsetActualYLoc * offsetActualYLoc));
+        float veloc = 480/1;
+        float duration = length/veloc;
+        
+        
+        
+        //Launch missle to desination of touch point by user.
+        CCActionMoveTo *launchMissle = [CCActionMoveTo actionWithDuration:duration position:destination];
+        
+        missileCount--;
+        
+        NSLog(@"MISSILE COUNT = %d", missileCount);
+        
+        //Run action of launching missile and Call block to remove missile from parent when not in view.
+        [_missile runAction:[CCActionSequence actions:launchMissle, [CCActionCallBlock actionWithBlock:^{
+            
+            
+            //Remove missile from parent
+            
+            CCNode *node = _missile;
+            if (_missile.position.x > viewableArea.width) {
+                [node removeFromParentAndCleanup:YES];
+                NSLog(@"MISSILE REMOVED");
+            }
+            
+            
+        }], nil]];
+        
+        
+        //[self removeChild:_missile];
+        [[OALSimpleAudio sharedInstance] playBg:@"aexp2.wav" loop:NO];
+        
+        
+        if(CGRectContainsPoint(_tank.textureRect, touchLoc)){
+            
+            [[OALSimpleAudio sharedInstance] playBg:@"tank_reload.mp3" loop:NO];
+        }
     }
-    
 }
 
 
@@ -337,6 +379,11 @@
             if (CGRectIntersectsRect(missile.boundingBox, helis.boundingBox)) {
                 [[OALSimpleAudio sharedInstance] playBg:@"boom6.wav" loop:NO];
                 [deleteHelis addObject:helis];
+                
+                if (!sectionTwoComplete) {
+                    [self tutorialPaused:2];
+                    sectionTwoComplete = true;
+                }
                 
                 //Increase hits
                 hits++;
@@ -411,6 +458,110 @@
     
 }
 
+-(void)tutorialPaused:(int)section
+{
+    if(section == 1)
+    {
+        [[CCDirector sharedDirector] pause];
+        
+        tutorialLabel = [CCLabelTTF labelWithString:@"Tap screen to launch missile" fontName:@"Verdana" fontSize:14.0f];
+        tutorialLabel.positionType = CCPositionTypeNormalized;
+        tutorialLabel.position = ccp(0.5f, 0.5f);
+        tutorialLabel.color = [CCColor whiteColor];
+        [self addChild:tutorialLabel];
+        
+        okayButton = [CCButton buttonWithTitle:@"Okay" fontName:@"Verdana" fontSize:16.0f];
+        okayButton.positionType = CCPositionTypeNormalized;
+        okayButton.position = ccp(0.80f, 0.15f);
+        [okayButton setTarget:self selector:@selector(sectionOneResume:)];
+        [self addChild:okayButton];
+        
+        [self removeAssets:1];
+    }
+    else if (section == 2)
+    {
+        [[CCDirector sharedDirector] pause];
+        
+        tutorialLabel = [CCLabelTTF labelWithString:@"Each hit will increase your score" fontName:@"Verdana" fontSize:14.0f];
+        tutorialLabel.positionType = CCPositionTypeNormalized;
+        tutorialLabel.position = ccp(0.5f, 0.5f);
+        tutorialLabel.color = [CCColor whiteColor];
+        [self addChild:tutorialLabel];
+        
+        okayButton = [CCButton buttonWithTitle:@"Okay" fontName:@"Verdana" fontSize:16.0f];
+        okayButton.positionType = CCPositionTypeNormalized;
+        okayButton.position = ccp(0.80f, 0.15f);
+        [okayButton setTarget:self selector:@selector(sectionTwoResume:)];
+        [self addChild:okayButton];
+        
+        [self removeAssets:2];
+    }
+    
+    else if (section == 3)
+    {
+        [[CCDirector sharedDirector] pause];
+        
+        tutorialLabel = [CCLabelTTF labelWithString:@"You can only miss three helicopters or you will loose the game!" fontName:@"Verdana" fontSize:14.0f];
+        tutorialLabel.positionType = CCPositionTypeNormalized;
+        tutorialLabel.position = ccp(0.5f, 0.5f);
+        tutorialLabel.color = [CCColor whiteColor];
+        [self addChild:tutorialLabel];
+        
+        okayButton = [CCButton buttonWithTitle:@"Okay" fontName:@"Verdana" fontSize:16.0f];
+        okayButton.positionType = CCPositionTypeNormalized;
+        okayButton.position = ccp(0.80f, 0.15f);
+        [okayButton setTarget:self selector:@selector(sectionThreeResume:)];
+        [self addChild:okayButton];
+        
+        [self removeAssets:3];
+    }
+    
+    
+    else if (section == 4)
+    {
+        //Resume Game Animations
+        [[CCDirector sharedDirector] pause];
+
+        tutorialLabel = [CCLabelTTF labelWithString:@"You have successfully completed the tutorial. Have Fun!" fontName:@"Verdana" fontSize:14.0f];
+        tutorialLabel.positionType = CCPositionTypeNormalized;
+        tutorialLabel.position = ccp(0.5f, 0.5f);
+        tutorialLabel.color = [CCColor whiteColor];
+        [self addChild:tutorialLabel];
+        
+        okayButton = [CCButton buttonWithTitle:@"Okay" fontName:@"Verdana" fontSize:16.0f];
+        okayButton.positionType = CCPositionTypeNormalized;
+        okayButton.position = ccp(0.80f, 0.15f);
+        [okayButton setTarget:self selector:@selector(sectionFourResume:)];
+        [self addChild:okayButton];
+        
+        
+    }
+}
+
+-(void)removeAssets:(int)section
+{
+    if (section == 1) {
+        
+        [self removeChild:pauseButton];
+        [self removeChild:backButton];
+        [self removeChild:missedHelis];
+        [self removeChild:scoreLabel];
+        
+    }
+    else if (section == 2){
+        
+        [self removeChild:pauseButton];
+        [self removeChild:backButton];
+        [self removeChild:missedHelis];
+    }
+    else if (section == 3)
+    {
+        [self removeChild:pauseButton];
+        [self removeChild:backButton];
+        [self removeChild:scoreLabel];
+    }
+}
+
 
 //Resume Gameplay
 - (void)resumeGamePlay:(id)sender
@@ -427,6 +578,85 @@
     [self removeChild:resumeButton];
     
     
+}
+
+-(void)sectionOneResume:(id)sender
+{
+    //Resume Game Animations
+    [[CCDirector sharedDirector] resume];
+    
+    //Remove Resume Button
+    [self removeChild:okayButton];
+    [self removeChild:tutorialLabel];
+    
+    [self addChild:pauseButton];
+    [self addChild:backButton];
+    [self addChild:missedHelis];
+    [self addChild:scoreLabel];
+    
+}
+
+-(void)sectionTwoResume:(id)sender
+{
+    
+    
+    //Resume Game Animations
+    [[CCDirector sharedDirector] resume];
+    
+    if(sectionThreeComplete){
+        //Remove Resume Button
+        [self removeChild:okayButton];
+        [self removeChild:tutorialLabel];
+        
+        [self tutorialPaused:4];
+
+        
+    }else{
+    
+
+    //Remove Resume Button
+    [self removeChild:okayButton];
+    [self removeChild:tutorialLabel];
+    
+    [self addChild:pauseButton];
+    [self addChild:backButton];
+    [self addChild:missedHelis];
+    }
+}
+
+-(void)sectionThreeResume:(id)sender
+{
+    //Resume Game Animations
+    [[CCDirector sharedDirector] resume];
+   
+    if(sectionTwoComplete){
+        
+        //Remove Resume Button
+        [self removeChild:okayButton];
+        [self removeChild:tutorialLabel];
+        
+        [self tutorialPaused:4];
+        
+
+        
+    }else{
+        [self removeChild:okayButton];
+        [self removeChild:tutorialLabel];
+        
+        [self addChild:pauseButton];
+        [self addChild:backButton];
+        [self addChild:scoreLabel];
+    }
+    
+}
+
+-(void)sectionFourResume:(id)sender
+{
+    //Resume Game Animations
+    [[CCDirector sharedDirector] resume];
+    // back to intro scene with transition
+    [[CCDirector sharedDirector] replaceScene:[IntroScene scene]
+                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
 }
 
 // -----------------------------------------------------------------------
