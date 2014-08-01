@@ -501,7 +501,7 @@
     {
         [[CCDirector sharedDirector] pause];
         
-        tutorialLabel = [CCLabelTTF labelWithString:@"You can only miss three helicopters or you will loose the game!" fontName:@"Verdana" fontSize:14.0f];
+        tutorialLabel = [CCLabelTTF labelWithString:@"You can only miss three helicopters or you will lose the game!" fontName:@"Verdana" fontSize:14.0f];
         tutorialLabel.positionType = CCPositionTypeNormalized;
         tutorialLabel.position = ccp(0.5f, 0.5f);
         tutorialLabel.color = [CCColor whiteColor];
