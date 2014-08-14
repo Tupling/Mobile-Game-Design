@@ -296,6 +296,7 @@
     viewableArea = [[CCDirector sharedDirector] viewSize];
     //Set _missle sprite to shell image
     CCSprite *_missile = [CCSprite spriteWithImageNamed:@"shell.png"];
+    CCSprite *_secondMissile = [CCSprite spriteWithImageNamed:@"shell.png"];
     
     //setup the location of initial missile launch
     _missile.position = ccp(20, 15);
@@ -308,12 +309,12 @@
     
     //Make sure touch point is not the reload tank point (touching the tank) before launching missle
     
+    
     if(!CGRectContainsPoint(_tank.boundingBox, touchLoc)){
         //Add the missile to the view
         [self addChild:_missile];
         
         [_missiles addObject:_missile];
-        
         
     }
     
@@ -338,21 +339,75 @@
     //Launch missle to desination of touch point by user.
     launchMissle = [CCActionMoveTo actionWithDuration:duration position:destination];
     
-
+    
     //Run action of launching missile and Call block to remove missile from parent when not in view.
     [_missile runAction:[CCActionSequence actions:launchMissle, [CCActionCallBlock actionWithBlock:^{
         
         
         //Remove missile from parent
-    
+        
         CCNode *node = _missile;
         if (_missile.position.x > viewableArea.width) {
             [node removeFromParentAndCleanup:YES];
             NSLog(@"MISSILE REMOVED");
         }
-
+        
         
     }], nil]];
+
+    
+    
+    //Launch second missile
+    
+    if (hits >= 5 && misses == 3) {
+        
+    
+    if(!CGRectContainsPoint(_tank.boundingBox, touchLoc)){
+        //Add the missile to the view
+        [self addChild:_secondMissile];
+        
+        [_missiles addObject:_secondMissile];
+        
+    }
+    
+    //Get the launch point of the missile and the touch from user interaction
+    //launch missile to touch point
+    
+    int actualXLoc = viewableArea.width + (_secondMissile.contentSize.width/2);
+    float ratio = (float) offset.y / (float) offset.x;
+    int actualYLoc = (actualXLoc * ratio) + _secondMissile.position.y;
+    CGPoint destination = ccp(actualXLoc, actualYLoc);
+    
+    //Get the x and y offset location from the touch point and the origination location of missile.
+    int offsetActualXLoc = actualXLoc - _secondMissile.position.x;
+    int offsetActualYLoc = actualYLoc - _secondMissile.position.y;
+    
+    float length = sqrtf((offsetActualXLoc * offsetActualXLoc) + (offsetActualYLoc * offsetActualYLoc));
+    float veloc = 450/1;
+    float duration = length/veloc;
+    
+    
+    
+    //Launch missle to desination of touch point by user.
+    launchMissle = [CCActionMoveTo actionWithDuration:duration position:destination];
+    
+
+        //Run action of launching missile and Call block to remove missile from parent when not in view.
+        [_secondMissile runAction:[CCActionSequence actions:launchMissle, [CCActionCallBlock actionWithBlock:^{
+            
+            
+            //Remove missile from parent
+            
+            CCNode *node = _secondMissile;
+            if (_secondMissile.position.x > viewableArea.width) {
+                [node removeFromParentAndCleanup:YES];
+                NSLog(@"MISSILE REMOVED");
+            }
+            
+            
+        }], nil]];
+        
+    }
     
     
     
