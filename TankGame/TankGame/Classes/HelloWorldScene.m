@@ -21,17 +21,24 @@
     
     //Local Vairables
     CCSprite *_tank;
+    
     NSMutableArray *_missiles;
     NSMutableArray *_helicopters;
     CGSize viewableArea;
+    
     CCButton *pauseButton;
     CCButton *backButton;
     CCButton *resumeButton;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *missedHelis;
+    
+    CCActionMoveTo *launchMissle;
+    
     int hits;
     int misses;
     int actualSpeed;
+    int scoreTotal;
+    int bonusScore;
     
 }
 
@@ -206,7 +213,7 @@
     }
     else if (hits > 7 ){
         
-        NSLog(@"Hitting > 8 hits");
+        NSLog(@"Hitting > 7 hits");
         //set minimum and maximum speeds of helicopter
         int minSpeed = 2.0;
         int maxSpeed = 3.0;
@@ -329,8 +336,9 @@
     
     
     //Launch missle to desination of touch point by user.
-    CCActionMoveTo *launchMissle = [CCActionMoveTo actionWithDuration:duration position:destination];
+    launchMissle = [CCActionMoveTo actionWithDuration:duration position:destination];
     
+
     //Run action of launching missile and Call block to remove missile from parent when not in view.
     [_missile runAction:[CCActionSequence actions:launchMissle, [CCActionCallBlock actionWithBlock:^{
         
@@ -379,13 +387,24 @@
                 
                 //Increase hits
                 hits++;
+ 
                 
                 //Multiply hits by 10 to get totalScore
-                int scoreTotal = hits * 10;
+                if (hits <= 5){
+                    
+                    scoreTotal = hits * 10;
+
+                }else if(hits > 5){
+                    
+                    bonusScore = 25;
+                    scoreTotal = scoreTotal + bonusScore;
+                }
+                
+                
                 //Update ScoreLabel with string to include scoreTotal
                 [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", scoreTotal]];
                 
-                if (scoreTotal == 140) {
+                if (scoreTotal == 150) {
                     CCScene *gameOver = [GameOverScene winningScene:YES];
                     [[CCDirector sharedDirector] replaceScene:gameOver];
                 }
