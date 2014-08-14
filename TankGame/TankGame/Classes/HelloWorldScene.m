@@ -31,6 +31,7 @@
     CCLabelTTF *missedHelis;
     int hits;
     int misses;
+    int actualSpeed;
     
 }
 
@@ -172,11 +173,46 @@
     
     [_helicopters addObject:self.helicopter];
     
-    //set minimum and maximum speeds of helicopter
-    int minSpeed = 3.0;
-    int maxSpeed = 5.0;
-    int rangeDuration = maxSpeed - minSpeed;
-    int actualSpeed = (arc4random() % rangeDuration) + minSpeed;
+    
+    //Detect how far a player is in the level. Increase speed based on hits.
+    
+    if (hits < 1)  {
+        
+        NSLog(@"Hitting < 3 hits");
+        
+        //set minimum and maximum speeds of helicopter
+        int minSpeed = 6.0;
+        int maxSpeed = 7.0;
+        int rangeDuration = maxSpeed - minSpeed;
+        actualSpeed = (arc4random() % rangeDuration) + minSpeed;
+        
+    } else if (hits > 1 && hits < 4 ){
+        
+         NSLog(@"Hitting > 3 hits but less then 6");
+        //set minimum and maximum speeds of helicopter
+        int minSpeed = 5.0;
+        int maxSpeed = 8.0;
+        int rangeDuration = maxSpeed - minSpeed;
+        actualSpeed = (arc4random() % rangeDuration) + minSpeed;
+        
+    }else if (hits > 4 && hits < 7){
+        
+         NSLog(@"Hitting > 6 hits");
+        //set minimum and maximum speeds of helicopter
+        int minSpeed = 2.0;
+        int maxSpeed = 5.0;
+        int rangeDuration = maxSpeed - minSpeed;
+        actualSpeed = (arc4random() % rangeDuration) + minSpeed;
+    }
+    else if (hits > 7 ){
+        
+        NSLog(@"Hitting > 8 hits");
+        //set minimum and maximum speeds of helicopter
+        int minSpeed = 2.0;
+        int maxSpeed = 3.0;
+        int rangeDuration = maxSpeed - minSpeed;
+        actualSpeed = (arc4random() % rangeDuration) + minSpeed;
+    }
     
     
     CCActionMoveTo *moveHeli = [CCActionMoveTo actionWithDuration:actualSpeed position:ccp(-self.helicopter.contentSize.width/2, actualLoc)];
@@ -349,7 +385,7 @@
                 //Update ScoreLabel with string to include scoreTotal
                 [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", scoreTotal]];
                 
-                if (scoreTotal == 100) {
+                if (scoreTotal == 140) {
                     CCScene *gameOver = [GameOverScene winningScene:YES];
                     [[CCDirector sharedDirector] replaceScene:gameOver];
                 }
