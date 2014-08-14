@@ -31,6 +31,7 @@
     CCButton *resumeButton;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *missedHelis;
+    CCLabelTTF *totalHitsLabel;
     
     CCActionMoveTo *launchMissle;
     
@@ -111,6 +112,13 @@
     scoreLabel.position = ccp(0.10f, 0.95f);
     
     [self addChild:scoreLabel];
+    
+    //Add score Label to view
+    totalHitsLabel = [CCLabelTTF labelWithString:@"Hits: 0" fontName:@"Verdana-Bold" fontSize:16.0f];
+    totalHitsLabel.positionType = CCPositionTypeNormalized;
+    totalHitsLabel.position = ccp(0.10f, 0.85f);
+    
+    [self addChild:totalHitsLabel];
     
     
     //Missed Helis Label
@@ -297,6 +305,7 @@
     //Set _missle sprite to shell image
     CCSprite *_missile = [CCSprite spriteWithImageNamed:@"shell.png"];
     CCSprite *_secondMissile = [CCSprite spriteWithImageNamed:@"shell.png"];
+    CCSprite *_thirdMissile = [CCSprite spriteWithImageNamed:@"shell.png"];
     
     //setup the location of initial missile launch
     _missile.position = ccp(20, 15);
@@ -383,7 +392,7 @@
     int offsetActualYLoc = actualYLoc - _secondMissile.position.y;
     
     float length = sqrtf((offsetActualXLoc * offsetActualXLoc) + (offsetActualYLoc * offsetActualYLoc));
-    float veloc = 450/1;
+    float veloc = 510/1;
     float duration = length/veloc;
     
     
@@ -408,6 +417,58 @@
         }], nil]];
         
     }
+    
+    if (hits >= 8 && misses == 3) {
+        
+        
+        if(!CGRectContainsPoint(_tank.boundingBox, touchLoc)){
+            //Add the missile to the view
+            [self addChild:_thirdMissile];
+            
+            [_missiles addObject:_thirdMissile];
+            
+        }
+        
+        //Get the launch point of the missile and the touch from user interaction
+        //launch missile to touch point
+        
+        int actualXLoc = viewableArea.width + (_thirdMissile.contentSize.width/2);
+        float ratio = (float) offset.y / (float) offset.x;
+        int actualYLoc = (actualXLoc * ratio) + _thirdMissile.position.y;
+        CGPoint destination = ccp(actualXLoc, actualYLoc);
+        
+        //Get the x and y offset location from the touch point and the origination location of missile.
+        int offsetActualXLoc = actualXLoc - _thirdMissile.position.x;
+        int offsetActualYLoc = actualYLoc - _thirdMissile.position.y;
+        
+        float length = sqrtf((offsetActualXLoc * offsetActualXLoc) + (offsetActualYLoc * offsetActualYLoc));
+        float veloc = 450/1;
+        float duration = length/veloc;
+        
+        
+        
+        //Launch missle to desination of touch point by user.
+        launchMissle = [CCActionMoveTo actionWithDuration:duration position:destination];
+        
+        
+        //Run action of launching missile and Call block to remove missile from parent when not in view.
+        [_thirdMissile runAction:[CCActionSequence actions:launchMissle, [CCActionCallBlock actionWithBlock:^{
+            
+            
+            //Remove missile from parent
+            
+            CCNode *node = _thirdMissile;
+            if (_thirdMissile.position.x > viewableArea.width) {
+                [node removeFromParentAndCleanup:YES];
+                NSLog(@"MISSILE REMOVED");
+            }
+            
+            
+        }], nil]];
+        
+    }
+    
+
     
     
     
@@ -451,7 +512,12 @@
 
                 }else if(hits > 5){
                     
-                    bonusScore = 25;
+                    bonusScore = 15;
+                    scoreTotal = scoreTotal + bonusScore;
+                }
+                else if(hits > 10){
+                    
+                    bonusScore = 30;
                     scoreTotal = scoreTotal + bonusScore;
                 }
                 
@@ -459,7 +525,11 @@
                 //Update ScoreLabel with string to include scoreTotal
                 [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", scoreTotal]];
                 
-                if (scoreTotal == 150) {
+                //Update Hitds Label
+                [totalHitsLabel setString:[NSString stringWithFormat:@"Hits: %d", hits]];
+                
+                //Level one max score 300
+                if (scoreTotal == 300) {
                     CCScene *gameOver = [GameOverScene winningScene:YES];
                     [[CCDirector sharedDirector] replaceScene:gameOver];
                 }
