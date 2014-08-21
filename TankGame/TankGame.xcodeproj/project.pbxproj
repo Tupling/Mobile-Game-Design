@@ -708,6 +708,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33117D6F19A6BACB00087C49 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				335653781978A3AB0038BB6C /* tank_reload.mp3 */,
+				33912E04196F5F1C00AD6342 /* boom6.wav */,
+				33912DFC196F5AA100AD6342 /* aexp2.wav */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
 		338F2D57196DA1820044C7BD = {
 			isa = PBXGroup;
 			children = (
@@ -757,13 +767,12 @@
 		338F2D7C196DA1830044C7BD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				33117D6F19A6BACB00087C49 /* Audio */,
+				338F2D85196DA1830044C7BD /* Icons */,
 				33C7421B198040FF009BB6D0 /* helicopters-hd.plist */,
 				33C7421C198040FF009BB6D0 /* helicopters-hd.png */,
 				33C7421D198040FF009BB6D0 /* helicopters-ipadhd.plist */,
 				33C7421E198040FF009BB6D0 /* helicopters-ipadhd.png */,
-				335653781978A3AB0038BB6C /* tank_reload.mp3 */,
-				33912E04196F5F1C00AD6342 /* boom6.wav */,
-				33912DFC196F5AA100AD6342 /* aexp2.wav */,
 				338F2D7D196DA1830044C7BD /* Default.png */,
 				338F2D7F196DA1830044C7BD /* Default@2x.png */,
 				338F2D81196DA1830044C7BD /* Default-568h@2x.png */,
@@ -771,7 +780,6 @@
 				338F2DA0196DA1830044C7BD /* Info.plist */,
 				338F2DA1196DA1830044C7BD /* iTunesArtwork */,
 				338F2DA3196DA1830044C7BD /* iTunesArtwork@2x */,
-				338F2D85196DA1830044C7BD /* Icons */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
