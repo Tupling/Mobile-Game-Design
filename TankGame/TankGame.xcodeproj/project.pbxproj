@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1EF01907198B1D3D00525D7F /* GameTutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF01906198B1D3D00525D7F /* GameTutorial.m */; };
 		1EF7E95C1981C3530003B2E5 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7E95B1981C3530003B2E5 /* GameOverScene.m */; };
+		33117D6E19A6B27200087C49 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33117D6D19A6B27200087C49 /* GameKit.framework */; };
 		335653791978A3AB0038BB6C /* tank_reload.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 335653781978A3AB0038BB6C /* tank_reload.mp3 */; };
 		338F2D64196DA1830044C7BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338F2D63196DA1830044C7BD /* QuartzCore.framework */; };
 		338F2D66196DA1830044C7BD /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338F2D65196DA1830044C7BD /* OpenGLES.framework */; };
@@ -242,6 +243,7 @@
 		1EF01906198B1D3D00525D7F /* GameTutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTutorial.m; sourceTree = "<group>"; };
 		1EF7E95A1981C3530003B2E5 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		1EF7E95B1981C3530003B2E5 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
+		33117D6D19A6B27200087C49 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		335653781978A3AB0038BB6C /* tank_reload.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tank_reload.mp3; sourceTree = "<group>"; };
 		338F2D60196DA1830044C7BD /* TankGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TankGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338F2D63196DA1830044C7BD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -689,6 +691,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33117D6E19A6B27200087C49 /* GameKit.framework in Frameworks */,
 				338F2D7A196DA1830044C7BD /* libObjectiveChipmunk.a in Frameworks */,
 				338F2D68196DA1830044C7BD /* OpenAL.framework in Frameworks */,
 				338F2D6E196DA1830044C7BD /* UIKit.framework in Frameworks */,
@@ -726,6 +729,7 @@
 		338F2D62196DA1830044C7BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				33117D6D19A6B27200087C49 /* GameKit.framework */,
 				338F2D63196DA1830044C7BD /* QuartzCore.framework */,
 				338F2D65196DA1830044C7BD /* OpenGLES.framework */,
 				338F2D67196DA1830044C7BD /* OpenAL.framework */,
