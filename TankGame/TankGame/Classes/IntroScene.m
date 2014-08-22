@@ -12,6 +12,8 @@
 #import "HelloWorldScene.h"
 #import "GameCredits.h"
 #import "GameTutorial.h"
+#import "GameKitSetup.h"
+
 
 
 // -----------------------------------------------------------------------
@@ -35,6 +37,11 @@
 {
     // Apple recommend assigning self with supers return value
     self = [super init];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showAuthViewController) name:PresentAuthViewController object:nil];
+    
+    [[GameKitSetup sharedGameKit] authCurrentPlayer];
+    
     if (!self) return(nil);
     
     // Create a colored background (Dark Grey)
@@ -73,6 +80,18 @@
     // done
 	return self;
 }
+
+- (void)showAuthViewController
+{
+    GameKitSetup *gameKit = [GameKitSetup sharedGameKit];
+    
+    if(gameKit.userAuthenticateVC != nil){
+    [[CCDirector sharedDirector] presentViewController:gameKit.userAuthenticateVC animated:YES completion:nil];
+    }
+
+}
+
+
 
 // -----------------------------------------------------------------------
 #pragma mark - Button Callbacks

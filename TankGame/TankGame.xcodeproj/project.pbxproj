@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1EF01907198B1D3D00525D7F /* GameTutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF01906198B1D3D00525D7F /* GameTutorial.m */; };
 		1EF7E95C1981C3530003B2E5 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7E95B1981C3530003B2E5 /* GameOverScene.m */; };
+		3345995919A77AB1006AECD3 /* GameKitSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3345995819A77AB1006AECD3 /* GameKitSetup.m */; };
 		335653791978A3AB0038BB6C /* tank_reload.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 335653781978A3AB0038BB6C /* tank_reload.mp3 */; };
 		338F2D64196DA1830044C7BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338F2D63196DA1830044C7BD /* QuartzCore.framework */; };
 		338F2D66196DA1830044C7BD /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338F2D65196DA1830044C7BD /* OpenGLES.framework */; };
@@ -221,6 +222,7 @@
 		33912DFD196F5AA100AD6342 /* aexp2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33912DFC196F5AA100AD6342 /* aexp2.wav */; };
 		33912E05196F5F1C00AD6342 /* boom6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 33912E04196F5F1C00AD6342 /* boom6.wav */; };
 		33A3760D198AAE2B00015BEB /* GameCredits.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A3760C198AAE2A00015BEB /* GameCredits.m */; };
+		33C1D6A719A6CA3300DDAC13 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C1D6A619A6CA3300DDAC13 /* GameKit.framework */; };
 		33C7421F198040FF009BB6D0 /* helicopters-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33C7421B198040FF009BB6D0 /* helicopters-hd.plist */; };
 		33C74220198040FF009BB6D0 /* helicopters-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33C7421C198040FF009BB6D0 /* helicopters-hd.png */; };
 		33C74221198040FF009BB6D0 /* helicopters-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33C7421D198040FF009BB6D0 /* helicopters-ipadhd.plist */; };
@@ -242,6 +244,8 @@
 		1EF01906198B1D3D00525D7F /* GameTutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTutorial.m; sourceTree = "<group>"; };
 		1EF7E95A1981C3530003B2E5 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		1EF7E95B1981C3530003B2E5 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
+		3345995719A77AB1006AECD3 /* GameKitSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitSetup.h; sourceTree = "<group>"; };
+		3345995819A77AB1006AECD3 /* GameKitSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitSetup.m; sourceTree = "<group>"; };
 		335653781978A3AB0038BB6C /* tank_reload.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tank_reload.mp3; sourceTree = "<group>"; };
 		338F2D60196DA1830044C7BD /* TankGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TankGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338F2D63196DA1830044C7BD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -678,6 +682,7 @@
 		33912E04196F5F1C00AD6342 /* boom6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = boom6.wav; sourceTree = "<group>"; };
 		33A3760B198AAE2A00015BEB /* GameCredits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCredits.h; sourceTree = "<group>"; };
 		33A3760C198AAE2A00015BEB /* GameCredits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCredits.m; sourceTree = "<group>"; };
+		33C1D6A619A6CA3300DDAC13 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		33C7421B198040FF009BB6D0 /* helicopters-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "helicopters-hd.plist"; path = "Resources/helicopters-hd.plist"; sourceTree = "<group>"; };
 		33C7421C198040FF009BB6D0 /* helicopters-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "helicopters-hd.png"; path = "Resources/helicopters-hd.png"; sourceTree = "<group>"; };
 		33C7421D198040FF009BB6D0 /* helicopters-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "helicopters-ipadhd.plist"; path = "Resources/helicopters-ipadhd.plist"; sourceTree = "<group>"; };
@@ -689,6 +694,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33C1D6A719A6CA3300DDAC13 /* GameKit.framework in Frameworks */,
 				338F2D7A196DA1830044C7BD /* libObjectiveChipmunk.a in Frameworks */,
 				338F2D68196DA1830044C7BD /* OpenAL.framework in Frameworks */,
 				338F2D6E196DA1830044C7BD /* UIKit.framework in Frameworks */,
@@ -726,6 +732,7 @@
 		338F2D62196DA1830044C7BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				33C1D6A619A6CA3300DDAC13 /* GameKit.framework */,
 				338F2D63196DA1830044C7BD /* QuartzCore.framework */,
 				338F2D65196DA1830044C7BD /* OpenGLES.framework */,
 				338F2D67196DA1830044C7BD /* OpenAL.framework */,
@@ -1591,6 +1598,8 @@
 				33A3760C198AAE2A00015BEB /* GameCredits.m */,
 				1EF01905198B1D3D00525D7F /* GameTutorial.h */,
 				1EF01906198B1D3D00525D7F /* GameTutorial.m */,
+				3345995719A77AB1006AECD3 /* GameKitSetup.h */,
+				3345995819A77AB1006AECD3 /* GameKitSetup.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1827,6 +1836,7 @@
 				338F2DC6196DA1840044C7BD /* CCAnimationCache.m in Sources */,
 				338F2F4A196DA1850044C7BD /* CCTableView.m in Sources */,
 				1EF01907198B1D3D00525D7F /* GameTutorial.m in Sources */,
+				3345995919A77AB1006AECD3 /* GameKitSetup.m in Sources */,
 				338F300D196DA1860044C7BD /* AppDelegate.m in Sources */,
 				1EF7E95C1981C3530003B2E5 /* GameOverScene.m in Sources */,
 				338F2DDD196DA1840044C7BD /* CCDrawingPrimitives.m in Sources */,
