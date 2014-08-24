@@ -49,7 +49,7 @@
     [self addChild:background];
     
     // Hello world
-    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Main Menu" fontName:@"Verdana" fontSize:40.0f];
+    CCLabelTTF *label = [CCLabelTTF labelWithString:@" Tank Game " fontName:@"Verdana" fontSize:40.0f];
     label.positionType = CCPositionTypeNormalized;
     label.color = [CCColor redColor];
     label.position = ccp(0.5f, 0.80f); // Middle of screen
@@ -76,11 +76,21 @@
     tutorialButton.position = ccp(0.5f, 0.25f);
     [tutorialButton setTarget:self selector:@selector(onTutorialClicked:)];
     [self addChild:tutorialButton];
+    
+    //LeaderBoard
+    //Button
+    CCButton *leaderBoardBtn = [CCButton buttonWithTitle:@" LeaderBoard " fontName:@"Verdana-Bold" fontSize:18.0f];
+    leaderBoardBtn.positionType = CCPositionTypeNormalized;
+    leaderBoardBtn.position = ccp(0.5f, 0.15f);
+    [leaderBoardBtn setTarget:self selector:@selector(onLeaderBoardClicked:)];
+    [self addChild:leaderBoardBtn];
 
     // done
 	return self;
 }
 
+
+//Method to show notification for authenticated user
 - (void)showAuthViewController
 {
     GameKitSetup *gameKit = [GameKitSetup sharedGameKit];
@@ -89,6 +99,12 @@
     [[CCDirector sharedDirector] presentViewController:gameKit.userAuthenticateVC animated:YES completion:nil];
     }
 
+}
+
+//Delaget method to dismiss game center view controller
+-(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -116,6 +132,26 @@
     // start spinning scene with transition
     [[CCDirector sharedDirector] replaceScene:[GameTutorial scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:1.0f]];
+}
+
+-(void)onLeaderBoardClicked:(id)sender
+{
+    
+    //Set Gamecenter View Controller
+    GKGameCenterViewController *gameCenterVC = [[GKGameCenterViewController alloc] init];
+    
+    //GameCenter Delegate set
+    gameCenterVC.gameCenterDelegate = self;
+    
+    //Select GameCenter viewController
+    //In this game just view the leaderboard
+    gameCenterVC.viewState = GKGameCenterViewControllerStateLeaderboards;
+    
+    //Set Identifier for GameCenter leaderboard
+    gameCenterVC.leaderboardIdentifier = @"com.daletupling.TankGame.HighScores";
+    
+    //Present View controller
+    [[CCDirector sharedDirector] presentViewController:gameCenterVC animated:YES completion:nil];
 }
 
 // -----------------------------------------------------------------------

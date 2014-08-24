@@ -11,6 +11,7 @@
 #import "cocos2d.h"
 #import "cocos2d-ui.h"
 #import <Foundation/Foundation.h>
+#import <GameKit/GameKit.h>
 
 // -----------------------------------------------------------------------
 
@@ -20,7 +21,7 @@
  *  Main usage for CCLayer now, is to make colored backgrounds (rectangles)
  *
  */
-@interface IntroScene : CCScene
+@interface IntroScene : CCScene <GKGameCenterControllerDelegate>
 
 // -----------------------------------------------------------------------
 

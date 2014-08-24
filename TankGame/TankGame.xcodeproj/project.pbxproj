@@ -711,6 +711,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1EAA607219A971D800FEA8F4 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				335653781978A3AB0038BB6C /* tank_reload.mp3 */,
+				33912E04196F5F1C00AD6342 /* boom6.wav */,
+				33912DFC196F5AA100AD6342 /* aexp2.wav */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		1EAA607319A971F700FEA8F4 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				338F300B196DA1860044C7BD /* AppDelegate.h */,
+				338F300C196DA1860044C7BD /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
 		338F2D57196DA1820044C7BD = {
 			isa = PBXGroup;
 			children = (
@@ -760,13 +779,12 @@
 		338F2D7C196DA1830044C7BD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				338F2D85196DA1830044C7BD /* Icons */,
+				1EAA607219A971D800FEA8F4 /* Audio */,
 				33C7421B198040FF009BB6D0 /* helicopters-hd.plist */,
 				33C7421C198040FF009BB6D0 /* helicopters-hd.png */,
 				33C7421D198040FF009BB6D0 /* helicopters-ipadhd.plist */,
 				33C7421E198040FF009BB6D0 /* helicopters-ipadhd.png */,
-				335653781978A3AB0038BB6C /* tank_reload.mp3 */,
-				33912E04196F5F1C00AD6342 /* boom6.wav */,
-				33912DFC196F5AA100AD6342 /* aexp2.wav */,
 				338F2D7D196DA1830044C7BD /* Default.png */,
 				338F2D7F196DA1830044C7BD /* Default@2x.png */,
 				338F2D81196DA1830044C7BD /* Default-568h@2x.png */,
@@ -774,7 +792,6 @@
 				338F2DA0196DA1830044C7BD /* Info.plist */,
 				338F2DA1196DA1830044C7BD /* iTunesArtwork */,
 				338F2DA3196DA1830044C7BD /* iTunesArtwork@2x */,
-				338F2D85196DA1830044C7BD /* Icons */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1586,8 +1603,7 @@
 		338F300A196DA1860044C7BD /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				338F300B196DA1860044C7BD /* AppDelegate.h */,
-				338F300C196DA1860044C7BD /* AppDelegate.m */,
+				1EAA607319A971F700FEA8F4 /* AppDelegate */,
 				338F300E196DA1860044C7BD /* HelloWorldScene.h */,
 				338F300F196DA1860044C7BD /* HelloWorldScene.m */,
 				338F3011196DA1860044C7BD /* IntroScene.h */,
@@ -1648,6 +1664,11 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Dale Tupling";
+				TargetAttributes = {
+					338F2D5F196DA1830044C7BD = {
+						DevelopmentTeam = 8ENQG5E69R;
+					};
+				};
 			};
 			buildConfigurationList = 338F2D5B196DA1820044C7BD /* Build configuration list for PBXProject "TankGame" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1993,6 +2014,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dale Tupling (P4XS4KZN4D)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dale Tupling (P4XS4KZN4D)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2009,6 +2032,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2018,6 +2042,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dale Tupling (P4XS4KZN4D)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dale Tupling (P4XS4KZN4D)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TankGame/Supporting Files/Prefix.pch";
@@ -2033,6 +2059,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

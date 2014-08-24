@@ -40,6 +40,7 @@
     int actualSpeed;
     int scoreTotal;
     int bonusScore;
+    int conseqHits;
     
 }
 
@@ -248,12 +249,32 @@
         
         //Set losing condition
         if (misses == 0) {
+            //Run method to submit score to leaderboard
+            [self sendFinalScore];
+            
+            //Change scene to gameOver scene
             CCScene *gameOver = [GameOverScene winningScene:NO];
             [[CCDirector sharedDirector] replaceScene:gameOver];
+            
+
         }
         
     }], nil]];
     
+    
+}
+
+-(void)sendFinalScore {
+    
+    GKScore *leaderBoardScore = [[GKScore alloc] initWithLeaderboardIdentifier:@"com.daletupling.TankGame.HighScores"];
+    leaderBoardScore.value = scoreTotal;
+    
+    [GKScore reportScores:@[leaderBoardScore] withCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+
+        }
+    }];
     
 }
 
@@ -467,10 +488,7 @@
         }], nil]];
         
     }
-    
 
-    
-    
     
     //[self removeChild:_missile];
     [[OALSimpleAudio sharedInstance] playBg:@"aexp2.wav" loop:NO];
@@ -529,11 +547,11 @@
                 [totalHitsLabel setString:[NSString stringWithFormat:@"Hits: %d", hits]];
                 
                 //Level one max score 300
-                if (scoreTotal == 300) {
+               /* if (scoreTotal == 300) {
                     CCScene *gameOver = [GameOverScene winningScene:YES];
                     [[CCDirector sharedDirector] replaceScene:gameOver];
                 }
-                
+                */
                 
                 
                 
