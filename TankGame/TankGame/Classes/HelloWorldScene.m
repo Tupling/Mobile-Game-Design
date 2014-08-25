@@ -11,6 +11,8 @@
 #import "IntroScene.h"
 #import "GameOverScene.h"
 #import "CCAnimation.h"
+#import "GameKitSetup.h"
+#import "HighScores.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -18,6 +20,7 @@
 
 @implementation HelloWorldScene
 {
+
     
     //Local Vairables
     CCSprite *_tank;
@@ -35,14 +38,17 @@
     
     CCActionMoveTo *launchMissle;
     
+    GameKitSetup *gameKitInstance;
+    
     int hits;
     int misses;
     int actualSpeed;
     int scoreTotal;
     int bonusScore;
-    int conseqHits;
+    int constHits;
     
 }
+    static HelloWorldScene *instance = nil;
 
 // -----------------------------------------------------------------------
 #pragma mark - Create & Destroy
@@ -53,6 +59,7 @@
     return [[self alloc] init];
 }
 
+
 // -----------------------------------------------------------------------
 
 - (id)init
@@ -61,10 +68,16 @@
     self = [super init];
     if (!self) return(nil);
     
+    gameKitInstance = [[GameKitSetup alloc] init];
+    
     //Initiate hits counter to 0
     hits = 0;
+    
+    //Set consecutive hits for resetting immersive element
+    constHits = 0;
+    
     //3 missed helicopters equals game over
-    misses = 3;
+    misses = 0;
     
     //Instantiate helicaopter and missile arrays
     _helicopters = [[NSMutableArray alloc] init];
@@ -238,7 +251,8 @@
     [self.helicopter runAction:[CCActionSequence actions:moveHeli, [CCActionCallBlock actionWithBlock:^{
 
 
-        misses--;
+        misses++;
+        constHits = 0;
         
         [missedHelis setString:[NSString stringWithFormat:@"Misses: %d", misses]];
         
@@ -248,12 +262,18 @@
         [node removeFromParentAndCleanup:YES];
         
         //Set losing condition
-        if (misses == 0) {
+        if (misses == 3) {
             //Run method to submit score to leaderboard
-            [self sendFinalScore];
+            if  (gameKitInstance.gameKitEnabeled){
+                
+                [self sendFinalScore];
+
+            }
+            
+         
             
             //Change scene to gameOver scene
-            CCScene *gameOver = [GameOverScene winningScene:NO];
+            CCScene *gameOver = [GameOverScene finalScore:scoreTotal];
             [[CCDirector sharedDirector] replaceScene:gameOver];
             
 
@@ -275,6 +295,29 @@
 
         }
     }];
+    
+}
+
+-(void)addHighScore{
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    //Create new Fetch Request
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    //Request Entity EventInfo
+    NSEntityDescription *eventEntity = [NSEntityDescription entityForName:@"EventInfo" inManagedObjectContext:context];
+    
+    //Set fetchRequest entity to EventInfo Description
+    [fetchRequest setEntity:eventEntity];
+    
+    NSError * error;
+    //Set events array to data in core data
+    self.highScores = [context executeFetchRequest:fetchRequest error:&error];
+    
+    if (self.highScores != nil) {
+        
+    }
     
 }
 
@@ -389,7 +432,7 @@
     
     //Launch second missile
     
-    if (hits >= 5 && misses == 3) {
+    if (constHits >= 5) {
         
     
     if(!CGRectContainsPoint(_tank.boundingBox, touchLoc)){
@@ -439,7 +482,7 @@
         
     }
     
-    if (hits >= 8 && misses == 3) {
+    if (constHits >= 8) {
         
         
         if(!CGRectContainsPoint(_tank.boundingBox, touchLoc)){
@@ -521,6 +564,7 @@
                 
                 //Increase hits
                 hits++;
+                constHits++;
  
                 
                 //Multiply hits by 10 to get totalScore
@@ -546,6 +590,11 @@
                 //Update Hitds Label
                 [totalHitsLabel setString:[NSString stringWithFormat:@"Hits: %d", hits]];
                 
+                
+                
+                
+                
+
                 //Level one max score 300
                /* if (scoreTotal == 300) {
                     CCScene *gameOver = [GameOverScene winningScene:YES];

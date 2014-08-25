@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EAA607B19AAB42800FEA8F4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EAA607A19AAB42800FEA8F4 /* CoreData.framework */; };
+		1EAA607E19AAB50D00FEA8F4 /* HighScores.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA607C19AAB50D00FEA8F4 /* HighScores.xcdatamodeld */; };
+		1EAA608119AAB6DD00FEA8F4 /* HighScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA608019AAB6DD00FEA8F4 /* HighScores.m */; };
 		1EF01907198B1D3D00525D7F /* GameTutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF01906198B1D3D00525D7F /* GameTutorial.m */; };
 		1EF7E95C1981C3530003B2E5 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7E95B1981C3530003B2E5 /* GameOverScene.m */; };
 		3345995919A77AB1006AECD3 /* GameKitSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3345995819A77AB1006AECD3 /* GameKitSetup.m */; };
@@ -240,6 +243,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1EAA607A19AAB42800FEA8F4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1EAA607D19AAB50D00FEA8F4 /* HighScores.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HighScores.xcdatamodel; sourceTree = "<group>"; };
+		1EAA607F19AAB6DD00FEA8F4 /* HighScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScores.h; sourceTree = "<group>"; };
+		1EAA608019AAB6DD00FEA8F4 /* HighScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScores.m; sourceTree = "<group>"; };
 		1EF01905198B1D3D00525D7F /* GameTutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTutorial.h; sourceTree = "<group>"; };
 		1EF01906198B1D3D00525D7F /* GameTutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTutorial.m; sourceTree = "<group>"; };
 		1EF7E95A1981C3530003B2E5 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
@@ -694,6 +701,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EAA607B19AAB42800FEA8F4 /* CoreData.framework in Frameworks */,
 				33C1D6A719A6CA3300DDAC13 /* GameKit.framework in Frameworks */,
 				338F2D7A196DA1830044C7BD /* libObjectiveChipmunk.a in Frameworks */,
 				338F2D68196DA1830044C7BD /* OpenAL.framework in Frameworks */,
@@ -751,6 +759,7 @@
 		338F2D62196DA1830044C7BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1EAA607A19AAB42800FEA8F4 /* CoreData.framework */,
 				33C1D6A619A6CA3300DDAC13 /* GameKit.framework */,
 				338F2D63196DA1830044C7BD /* QuartzCore.framework */,
 				338F2D65196DA1830044C7BD /* OpenGLES.framework */,
@@ -1616,6 +1625,9 @@
 				1EF01906198B1D3D00525D7F /* GameTutorial.m */,
 				3345995719A77AB1006AECD3 /* GameKitSetup.h */,
 				3345995819A77AB1006AECD3 /* GameKitSetup.m */,
+				1EAA607C19AAB50D00FEA8F4 /* HighScores.xcdatamodeld */,
+				1EAA607F19AAB6DD00FEA8F4 /* HighScores.h */,
+				1EAA608019AAB6DD00FEA8F4 /* HighScores.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1751,6 +1763,7 @@
 				338F2DD9196DA1840044C7BD /* CCDirector.m in Sources */,
 				338F2F44196DA1850044C7BD /* CCScrollView.m in Sources */,
 				338F2E37196DA1840044C7BD /* CCResponder.m in Sources */,
+				1EAA607E19AAB50D00FEA8F4 /* HighScores.xcdatamodeld in Sources */,
 				338F2DCE196DA1840044C7BD /* CCClippingNode.m in Sources */,
 				338F2E61196DA1840044C7BD /* CCSpriteBatchNode.m in Sources */,
 				338F2E85196DA1850044C7BD /* CCTransition.m in Sources */,
@@ -1790,6 +1803,7 @@
 				338F2F3D196DA1850044C7BD /* CCControl.m in Sources */,
 				338F2EBF196DA1850044C7BD /* CCVertex.m in Sources */,
 				338F2EFB196DA1850044C7BD /* ALBuffer.m in Sources */,
+				1EAA608119AAB6DD00FEA8F4 /* HighScores.m in Sources */,
 				338F2EC8196DA1850044C7BD /* NSThread+performBlock.m in Sources */,
 				338F2E53196DA1840044C7BD /* CCShaderCache.m in Sources */,
 				338F2F90196DA1860044C7BD /* CCBSequenceProperty.m in Sources */,
@@ -2096,6 +2110,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1EAA607C19AAB50D00FEA8F4 /* HighScores.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1EAA607D19AAB50D00FEA8F4 /* HighScores.xcdatamodel */,
+			);
+			currentVersion = 1EAA607D19AAB50D00FEA8F4 /* HighScores.xcdatamodel */;
+			path = HighScores.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 338F2D58196DA1820044C7BD /* Project object */;
 }

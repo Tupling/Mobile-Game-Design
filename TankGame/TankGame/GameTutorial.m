@@ -20,6 +20,8 @@
     CCSprite *_tank;
     NSMutableArray *_missiles;
     NSMutableArray *_helicopters;
+    
+    
     CGSize viewableArea;
     CCButton *pauseButton;
     CCButton *backButton;
@@ -100,7 +102,7 @@
     
     
     //Back/Exit button to bring user back to the main menu or main launch screen of the game
-    backButton = [CCButton buttonWithTitle:@"Quit" fontName:@"Verdana-Bold" fontSize:16.0f];
+    backButton = [CCButton buttonWithTitle:@" Quit " fontName:@"Verdana-Bold" fontSize:16.0f];
     backButton.positionType = CCPositionTypeNormalized;
     backButton.position = ccp(0.85f, 0.95f); // Top Right of screen
     [backButton setTarget:self selector:@selector(onBackClicked:)];
@@ -108,7 +110,7 @@
     
     
     //Pause button
-    pauseButton = [CCButton buttonWithTitle:@"Pause" fontName:@"Verdana-Bold" fontSize:16.0f];
+    pauseButton = [CCButton buttonWithTitle:@" Pause " fontName:@"Verdana-Bold" fontSize:16.0f];
     pauseButton.positionType = CCPositionTypeNormalized;
     pauseButton.position = ccp(0.70f, 0.95f); // Top Right of screen
     [pauseButton setTarget:self selector:@selector(onPauseClicked:)];
@@ -221,9 +223,11 @@
         
         //Set losing condition
         if (misses == 0) {
-            CCScene *gameOver = [GameOverScene winningScene:NO];
+            CCScene *gameOver = [GameOverScene finalScore:0];
             [[CCDirector sharedDirector] replaceScene:gameOver];
         }
+        
+        
         
         if (!sectionThreeComplete) {
             if(misses < 3){
@@ -393,10 +397,10 @@
                 //Update ScoreLabel with string to include scoreTotal
                 [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", scoreTotal]];
                 
-                if (scoreTotal == 100) {
+                /*if (scoreTotal == 100) {
                     CCScene *gameOver = [GameOverScene winningScene:YES];
                     [[CCDirector sharedDirector] replaceScene:gameOver];
-                }
+                }*/
                 
                 
                 

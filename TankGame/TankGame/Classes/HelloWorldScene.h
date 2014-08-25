@@ -11,6 +11,8 @@
 #import "cocos2d.h"
 #import "cocos2d-ui.h"
 #import <GameKit/GameKit.h>
+#import "HighScores.h"
+
 
 // -----------------------------------------------------------------------
 
@@ -21,11 +23,22 @@
 
 // -----------------------------------------------------------------------
 
+
 @property(nonatomic, strong) CCSprite *helicopter;
 @property(nonatomic, strong) CCAction *flyAction;
 
+@property(nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property(nonatomic, strong) NSArray *highScores;
+
+@property (nonatomic, strong) HighScores *highScore;
+
+
 + (HelloWorldScene *)scene;
+
+
+
 - (id)init;
+
 
 -(void)sendFinalScore;
 

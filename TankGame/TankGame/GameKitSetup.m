@@ -10,7 +10,7 @@
 
 NSString *const PresentAuthViewController = @"present_auth_view";
 
-BOOL gameKitEnabeled;
+
 
 @implementation GameKitSetup
 
@@ -18,7 +18,7 @@ BOOL gameKitEnabeled;
 {
     self = [super init];
     if (self) {
-        gameKitEnabeled = YES;
+
     }
     return self;
 }
@@ -49,15 +49,21 @@ BOOL gameKitEnabeled;
         if(viewController != nil) {
 
             [self authenticateUserView:viewController];
+            
+            self.gameKitEnabeled = NO;
+            NSLog(@"GAME CENTER NOT ENABLED");
+            
         } else if([GKLocalPlayer localPlayer].isAuthenticated) {
 
             //Enabled Game Center if user has been authenticated
-            gameKitEnabeled = YES;
+            self.gameKitEnabeled = YES;
             
     
         } else {
             //User did not login and is not authenticated do not enable Game Center
-            gameKitEnabeled = NO;
+            self.gameKitEnabeled = NO;
+            
+            NSLog(@"GAME CENTER NOT ENABLED");
         }
     };
 }

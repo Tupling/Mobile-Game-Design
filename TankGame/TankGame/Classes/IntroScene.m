@@ -79,7 +79,7 @@
     
     //LeaderBoard
     //Button
-    CCButton *leaderBoardBtn = [CCButton buttonWithTitle:@" LeaderBoard " fontName:@"Verdana-Bold" fontSize:18.0f];
+    CCButton *leaderBoardBtn = [CCButton buttonWithTitle:@" Game Center " fontName:@"Verdana-Bold" fontSize:18.0f];
     leaderBoardBtn.positionType = CCPositionTypeNormalized;
     leaderBoardBtn.position = ccp(0.5f, 0.15f);
     [leaderBoardBtn setTarget:self selector:@selector(onLeaderBoardClicked:)];

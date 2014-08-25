@@ -70,7 +70,6 @@
     [self addChild:missileLaunch];
     
     
-    
 
 	return self;
 }
