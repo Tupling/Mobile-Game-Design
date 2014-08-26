@@ -16,6 +16,11 @@
     CCLabelTTF *scoreLabel_one;
     CCLabelTTF *scoreLabel_two;
     CCLabelTTF *scoreLabel_three;
+    
+    int firstScore;
+    int secondScore;
+    int thirdScore;
+    
 }
 
 + (HighScoreScene *)scene
@@ -71,7 +76,7 @@
     scoreLabel_three.color = [CCColor whiteColor];
     scoreLabel_three.position = ccp(0.5f, 0.35f); // Middle of screen
     [self addChild:scoreLabel_three];
-
+    
     // done
     
     [self loadScores];
@@ -96,15 +101,35 @@
     
     NSLog(@"%lu", (unsigned long)self.highScores.count);
     
-    for (int i = 0; i< self.highScores.count; i++) {
+    
+    
+    if ([self.highScores count] > 0) {
         
-        [scoreLabel_one setString:[NSString stringWithFormat:@"%@  :  %@", [self.highScores[0] valueForKey:@"userID"], [self.highScores[0] valueForKey:@"score"]]];
+        int lastObjectInt = (int*)[self.highScores indexOfObject:[self.highScores lastObject]];
         
-        [scoreLabel_two setString:[NSString stringWithFormat:@"%@  :  %@", [self.highScores[1] valueForKey:@"userID"], [self.highScores[1] valueForKey:@"score"]]];
         
-        [scoreLabel_three setString:[NSString stringWithFormat:@"%@  :  %@", [self.highScores[2] valueForKey:@"userID"], [self.highScores[2] valueForKey:@"score"]]];
+        firstScore = lastObjectInt;
+        
+        
+        [scoreLabel_one setString:[NSString stringWithFormat:@"%@  :  %@", [self.highScores[firstScore] valueForKey:@"userID"], [self.highScores[firstScore] valueForKey:@"score"]]];
+    }
+    
+    if([self.highScores count] >= 2){
+        
+        
+        secondScore = firstScore - 1;
+        
+        [scoreLabel_two setString:[NSString stringWithFormat:@"%@  :  %@", [self.highScores[secondScore] valueForKey:@"userID"], [self.highScores[secondScore] valueForKey:@"score"]]];
+    }
+    if ([self.highScores count] >= 3) {
+        
+        thirdScore = secondScore - 1;
+        
+        [scoreLabel_three setString:[NSString stringWithFormat:@"%@  :  %@", [self.highScores[thirdScore] valueForKey:@"userID"], [self.highScores[thirdScore] valueForKey:@"score"]]];
         
     }
+    
+    
     
 }
 
