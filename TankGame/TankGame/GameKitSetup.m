@@ -18,7 +18,7 @@ NSString *const PresentAuthViewController = @"present_auth_view";
 {
     self = [super init];
     if (self) {
-
+        self.gameKitEnabeled = YES;
     }
     return self;
 }
@@ -43,27 +43,36 @@ NSString *const PresentAuthViewController = @"present_auth_view";
     //Send current player to authenticateHandler
     currentPlayer.authenticateHandler  =
     ^(UIViewController *viewController, NSError *error) {
-
+        
         [self setAuthError:error];
         
         if(viewController != nil) {
-
+            
             [self authenticateUserView:viewController];
             
-            self.gameKitEnabeled = NO;
-            NSLog(@"GAME CENTER NOT ENABLED");
+        }else{
             
-        } else if([GKLocalPlayer localPlayer].isAuthenticated) {
-
-            //Enabled Game Center if user has been authenticated
-            self.gameKitEnabeled = YES;
+            if ([GKLocalPlayer localPlayer].authenticated) {
+   
+                
+                // Get the default leaderboard identifier.
+                [[GKLocalPlayer localPlayer] loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error) {
+                    
+                    if (error != nil) {
+                        NSLog(@"%@", [error localizedDescription]);
+                        self.gameKitEnabeled = NO;
+                    }
+                    
+                    else{
+                        self.gameKitEnabeled = YES;
+                        self.leaderBoardID = leaderboardIdentifier;
+                    }
+                }];
+            }
             
-    
-        } else {
-            //User did not login and is not authenticated do not enable Game Center
-            self.gameKitEnabeled = NO;
-            
-            NSLog(@"GAME CENTER NOT ENABLED");
+            else{
+                self.gameKitEnabeled = NO;
+            }
         }
     };
 }
@@ -92,6 +101,7 @@ NSString *const PresentAuthViewController = @"present_auth_view";
         //Log GameKit error
         NSLog(@"GameKit Setup ERROR: %@", [[_authError userInfo] description]);
     }
+    
 }
 
 @end

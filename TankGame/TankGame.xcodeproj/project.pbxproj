@@ -12,6 +12,7 @@
 		1EAA608119AAB6DD00FEA8F4 /* HighScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAA608019AAB6DD00FEA8F4 /* HighScores.m */; };
 		1EF01907198B1D3D00525D7F /* GameTutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF01906198B1D3D00525D7F /* GameTutorial.m */; };
 		1EF7E95C1981C3530003B2E5 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7E95B1981C3530003B2E5 /* GameOverScene.m */; };
+		1EFFF44E19AC065D00D822ED /* HighScoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EFFF44D19AC065D00D822ED /* HighScoreScene.m */; };
 		3345995919A77AB1006AECD3 /* GameKitSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3345995819A77AB1006AECD3 /* GameKitSetup.m */; };
 		335653791978A3AB0038BB6C /* tank_reload.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 335653781978A3AB0038BB6C /* tank_reload.mp3 */; };
 		338F2D64196DA1830044C7BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338F2D63196DA1830044C7BD /* QuartzCore.framework */; };
@@ -251,6 +252,8 @@
 		1EF01906198B1D3D00525D7F /* GameTutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTutorial.m; sourceTree = "<group>"; };
 		1EF7E95A1981C3530003B2E5 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		1EF7E95B1981C3530003B2E5 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
+		1EFFF44C19AC065D00D822ED /* HighScoreScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoreScene.h; sourceTree = "<group>"; };
+		1EFFF44D19AC065D00D822ED /* HighScoreScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoreScene.m; sourceTree = "<group>"; };
 		3345995719A77AB1006AECD3 /* GameKitSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitSetup.h; sourceTree = "<group>"; };
 		3345995819A77AB1006AECD3 /* GameKitSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitSetup.m; sourceTree = "<group>"; };
 		335653781978A3AB0038BB6C /* tank_reload.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tank_reload.mp3; sourceTree = "<group>"; };
@@ -1628,6 +1631,8 @@
 				1EAA607C19AAB50D00FEA8F4 /* HighScores.xcdatamodeld */,
 				1EAA607F19AAB6DD00FEA8F4 /* HighScores.h */,
 				1EAA608019AAB6DD00FEA8F4 /* HighScores.m */,
+				1EFFF44C19AC065D00D822ED /* HighScoreScene.h */,
+				1EFFF44D19AC065D00D822ED /* HighScoreScene.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1813,6 +1818,7 @@
 				338F2DB6196DA1840044C7BD /* CCActionInterval.m in Sources */,
 				338F2E25196DA1840044C7BD /* CCPhysicsJoint.m in Sources */,
 				338F2E03196DA1840044C7BD /* CCMotionStreak.m in Sources */,
+				1EFFF44E19AC065D00D822ED /* HighScoreScene.m in Sources */,
 				338F2DB3196DA1840044C7BD /* CCActionInstant.m in Sources */,
 				338F2EAD196DA1850044C7BD /* base64.c in Sources */,
 				338F2EEC196DA1850044C7BD /* OALAudioTrack.m in Sources */,

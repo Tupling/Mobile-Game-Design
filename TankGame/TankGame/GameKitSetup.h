@@ -16,6 +16,7 @@ extern NSString *const PresentAuthViewController;
 @property (nonatomic, readonly)UIViewController *userAuthenticateVC;
 @property (nonatomic, readonly)NSError *authError;
 @property (nonatomic) BOOL gameKitEnabeled;
+@property (nonatomic, retain)NSString *leaderBoardID;
 
 +(instancetype) sharedGameKit;
 

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "AppDelegate.h"
 
 @interface GameOverScene : CCNodeColor <UITextFieldDelegate>
     
@@ -15,9 +16,10 @@
 -(id)initWithFinalScore:(int)score;
 
 @property(nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property(nonatomic, strong) NSArray *highScores;
+@property(nonatomic, strong) NSMutableArray *highScores;
 
 @property(nonatomic) int gameScore;
+@property (nonatomic)BOOL playerAuth;
 
     
 @end

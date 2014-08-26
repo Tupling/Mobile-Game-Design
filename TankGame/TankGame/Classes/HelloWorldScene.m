@@ -264,7 +264,9 @@
         //Set losing condition
         if (misses == 3) {
             //Run method to submit score to leaderboard
-            if  (gameKitInstance.gameKitEnabeled){
+            BOOL playerAuth = [GKLocalPlayer localPlayer].authenticated;
+                        
+            if  (playerAuth){
                 
                 [self sendFinalScore];
 

@@ -9,6 +9,8 @@
 
 #import "cocos2d.h"
 
+#define ApplicationDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
+
 @interface AppDelegate : CCAppDelegate
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

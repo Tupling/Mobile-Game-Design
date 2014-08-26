@@ -10,14 +10,18 @@
 #import "HelloWorldScene.h"
 #import "IntroScene.h"
 #import "GameKitSetup.h"
+#import "HighScores.h"
+#import "HighScoreScene.h"
+
 
 
 @implementation GameOverScene
 {
     CCButton *backButton;
-    int passedScore;
+    NSNumber *passedScore;
     UITextField *textField;
     GameKitSetup *gameKit;
+
 }
 
 +(CCScene *) finalScore:(int)score{
@@ -36,14 +40,16 @@
         
         NSString *gameCondition;
         
+        passedScore = [NSNumber numberWithInt:score];
+        
         gameKit = [[GameKitSetup alloc] init];
         
         gameCondition = [NSString stringWithFormat:@"You achieved a score of %d", score];
         
-        
+        self.playerAuth = [GKLocalPlayer localPlayer].authenticated;
 
         
-        if (gameKit.authError || gameKit.gameKitEnabeled == NO) {
+        if (!self.playerAuth) {
             CCLabelTTF *gameStatus = [CCLabelTTF labelWithString:gameCondition fontName:@"Chalkduster" fontSize:18.0f];
             gameStatus.positionType = CCPositionTypeNormalized;
             gameStatus.position = ccp(0.5f, 0.95f);
@@ -90,24 +96,60 @@
 
 - (void)onBackClicked:(id)sender
 {
-    if (gameKit.authError) {
+
+    
+    if (!self.playerAuth) {
         
-        NSManagedObjectContext *context = [self managedObjectContext];
+        NSManagedObjectContext *context = [ApplicationDelegate managedObjectContext];
         
         //Create new Fetch Request
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         
         //Request Entity EventInfo
-        NSEntityDescription *eventEntity = [NSEntityDescription entityForName:@"HighScores" inManagedObjectContext:context];
+        NSEntityDescription *eventEntity = [NSEntityDescription entityForName:@"Scores" inManagedObjectContext:context];
         
         //Set fetchRequest entity to EventInfo Description
         [fetchRequest setEntity:eventEntity];
         
         NSError * error;
         //Set events array to data in core data
-        self.highScores = [context executeFetchRequest:fetchRequest error:&error];
+        self.highScores = (NSMutableArray*)[context executeFetchRequest:fetchRequest error:&error];
         
         if (self.highScores != nil) {
+            HighScores *userScoreAtt = [NSEntityDescription insertNewObjectForEntityForName:@"Scores" inManagedObjectContext:context];
+            userScoreAtt.userID = textField.text;
+            NSLog(@"%@", textField.text);
+            userScoreAtt.score = passedScore;
+            NSLog(@"%@", passedScore);
+            
+            //[self.highScores addObject:userScoreAtt];
+            
+            NSError *error;
+            
+            [ApplicationDelegate.managedObjectContext save:&error];
+            
+           /* if(![context save:&error]){
+                NSLog(@"FAILED TO SAVE DATA %@", [error localizedDescription]);
+            }*/
+            
+            //Create new Fetch Request
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+            
+            //Request Entity EventInfo
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Scores" inManagedObjectContext:context];
+            
+            //Set fetchRequest entity to EventInfo Description
+            [fetchRequest setEntity:entity];
+            
+            //Set events array to data in core data
+            NSArray *scores = [context executeFetchRequest:fetchRequest error:&error];
+            
+            NSLog(@"Score Array = %@", scores);
+            
+            //Transition to High Scores Scene
+            
+            [[CCDirector sharedDirector] replaceScene:[HighScoreScene scene]
+                                       withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
             
             NSLog(@"CoreData Not Nil");
         }else{

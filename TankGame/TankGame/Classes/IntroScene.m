@@ -13,6 +13,7 @@
 #import "GameCredits.h"
 #import "GameTutorial.h"
 #import "GameKitSetup.h"
+#import "HighScoreScene.h"
 
 
 
@@ -65,7 +66,7 @@
     //Credits Button
     CCButton *gameCreditsButton = [CCButton buttonWithTitle:@" Credits " fontName:@"Verdana-Bold" fontSize:18.0f];
     gameCreditsButton.positionType = CCPositionTypeNormalized;
-    gameCreditsButton.position = ccp(0.5f, 0.35f);
+    gameCreditsButton.position = ccp(0.5f, 0.40f);
     [gameCreditsButton setTarget:self selector:@selector(onCreditsClicked:)];
     [self addChild:gameCreditsButton];
     
@@ -73,7 +74,7 @@
     //Credits Button
     CCButton *tutorialButton = [CCButton buttonWithTitle:@" Tutorial " fontName:@"Verdana-Bold" fontSize:18.0f];
     tutorialButton.positionType = CCPositionTypeNormalized;
-    tutorialButton.position = ccp(0.5f, 0.25f);
+    tutorialButton.position = ccp(0.5f, 0.30f);
     [tutorialButton setTarget:self selector:@selector(onTutorialClicked:)];
     [self addChild:tutorialButton];
     
@@ -81,9 +82,15 @@
     //Button
     CCButton *leaderBoardBtn = [CCButton buttonWithTitle:@" Game Center " fontName:@"Verdana-Bold" fontSize:18.0f];
     leaderBoardBtn.positionType = CCPositionTypeNormalized;
-    leaderBoardBtn.position = ccp(0.5f, 0.15f);
+    leaderBoardBtn.position = ccp(0.5f, 0.20f);
     [leaderBoardBtn setTarget:self selector:@selector(onLeaderBoardClicked:)];
     [self addChild:leaderBoardBtn];
+    
+    CCButton *highScores = [CCButton buttonWithTitle:@" High Scores " fontName:@"Verdana-Bold" fontSize:18.0f];
+    highScores.positionType = CCPositionTypeNormalized;
+    highScores.position = ccp(0.5f, 0.10f);
+    [highScores setTarget:self selector:@selector(onHighScoreClicked:)];
+    [self addChild:highScores];
 
     // done
 	return self;
@@ -131,6 +138,13 @@
 {
     // start spinning scene with transition
     [[CCDirector sharedDirector] replaceScene:[GameTutorial scene]
+                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:1.0f]];
+}
+
+- (void)onHighScoreClicked:(id)sender
+{
+    // start spinning scene with transition
+    [[CCDirector sharedDirector] replaceScene:[HighScoreScene scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:1.0f]];
 }
 
