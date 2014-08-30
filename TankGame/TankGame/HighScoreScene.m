@@ -102,31 +102,34 @@
     NSLog(@"%lu", (unsigned long)self.highScores.count);
     
     
-    
-    if ([self.highScores count] > 0) {
+    if([self.highScores count] != 0){
+        if ([self.highScores count] > 0) {
+            
+            int lastObjectInt = (int*)[self.highScores indexOfObject:[self.highScores lastObject]];
+            
+            
+            firstScore = lastObjectInt;
+            
+            
+            [scoreLabel_one setString:[NSString stringWithFormat:@"%@  :  %@", [self.highScores[firstScore] valueForKey:@"userID"], [self.highScores[firstScore] valueForKey:@"score"]]];
+        }
         
-        int lastObjectInt = (int*)[self.highScores indexOfObject:[self.highScores lastObject]];
-        
-        
-        firstScore = lastObjectInt;
-        
-        
-        [scoreLabel_one setString:[NSString stringWithFormat:@"%@  :  %@", [self.highScores[firstScore] valueForKey:@"userID"], [self.highScores[firstScore] valueForKey:@"score"]]];
-    }
-    
-    if([self.highScores count] >= 2){
-        
-        
-        secondScore = firstScore - 1;
-        
-        [scoreLabel_two setString:[NSString stringWithFormat:@"%@  :  %@", [self.highScores[secondScore] valueForKey:@"userID"], [self.highScores[secondScore] valueForKey:@"score"]]];
-    }
-    if ([self.highScores count] >= 3) {
-        
-        thirdScore = secondScore - 1;
-        
-        [scoreLabel_three setString:[NSString stringWithFormat:@"%@  :  %@", [self.highScores[thirdScore] valueForKey:@"userID"], [self.highScores[thirdScore] valueForKey:@"score"]]];
-        
+        if([self.highScores count] >= 2){
+            
+            
+            secondScore = firstScore - 1;
+            
+            [scoreLabel_two setString:[NSString stringWithFormat:@"%@  :  %@", [self.highScores[secondScore] valueForKey:@"userID"], [self.highScores[secondScore] valueForKey:@"score"]]];
+        }
+        if ([self.highScores count] >= 3) {
+            
+            thirdScore = secondScore - 1;
+            
+            [scoreLabel_three setString:[NSString stringWithFormat:@"%@  :  %@", [self.highScores[thirdScore] valueForKey:@"userID"], [self.highScores[thirdScore] valueForKey:@"score"]]];
+            
+        }
+    }else{
+        NSLog(@"NO SAVED VALUES IN CORED DATA");
     }
     
     

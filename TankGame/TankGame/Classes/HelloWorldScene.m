@@ -20,7 +20,7 @@
 
 @implementation HelloWorldScene
 {
-
+    
     
     //Local Vairables
     CCSprite *_tank;
@@ -40,6 +40,8 @@
     
     GameKitSetup *gameKitInstance;
     
+    BOOL playerAuth;
+    
     int hits;
     int misses;
     int actualSpeed;
@@ -47,8 +49,11 @@
     int bonusScore;
     int constHits;
     
+    
+    
 }
-    static HelloWorldScene *instance = nil;
+static HelloWorldScene *instance = nil;
+
 
 // -----------------------------------------------------------------------
 #pragma mark - Create & Destroy
@@ -67,6 +72,8 @@
     // Apple recommend assigning self with supers return value
     self = [super init];
     if (!self) return(nil);
+    
+    playerAuth = [GKLocalPlayer localPlayer].authenticated;
     
     gameKitInstance = [[GameKitSetup alloc] init];
     
@@ -217,7 +224,7 @@
         
     } else if (hits > 1 && hits < 4 ){
         
-         NSLog(@"Hitting > 3 hits but less then 6");
+        NSLog(@"Hitting > 3 hits but less then 6");
         //set minimum and maximum speeds of helicopter
         int minSpeed = 5.0;
         int maxSpeed = 8.0;
@@ -226,7 +233,7 @@
         
     }else if (hits > 4 && hits < 7){
         
-         NSLog(@"Hitting > 6 hits");
+        NSLog(@"Hitting > 6 hits");
         //set minimum and maximum speeds of helicopter
         int minSpeed = 2.0;
         int maxSpeed = 5.0;
@@ -249,8 +256,8 @@
     //Run action of moving helicopter and Call block to remove helicsopter from parent when not in view.
     
     [self.helicopter runAction:[CCActionSequence actions:moveHeli, [CCActionCallBlock actionWithBlock:^{
-
-
+        
+        
         misses++;
         constHits = 0;
         
@@ -260,25 +267,25 @@
         
         CCNode *node = spriteSheet;
         [node removeFromParentAndCleanup:YES];
+        if (misses == 1) {
+            
+            
+            [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"passed_chopper" percentComplete:100.0];
+            
+        }
         
         //Set losing condition
         if (misses == 3) {
             //Run method to submit score to leaderboard
-            BOOL playerAuth = [GKLocalPlayer localPlayer].authenticated;
-                        
-            if  (playerAuth){
-                
-                [self sendFinalScore];
-
-            }
             
-         
+            [self sendAchieveDataToGameCenter];
+            
             
             //Change scene to gameOver scene
             CCScene *gameOver = [GameOverScene finalScore:scoreTotal];
             [[CCDirector sharedDirector] replaceScene:gameOver];
             
-
+            
         }
         
     }], nil]];
@@ -286,15 +293,20 @@
     
 }
 
+
+
+
+
+//Game Center Score Update Method
 -(void)sendFinalScore {
     
-    GKScore *leaderBoardScore = [[GKScore alloc] initWithLeaderboardIdentifier:@"com.daletupling.TankGame.HighScores"];
+    GKScore *leaderBoardScore = [[GKScore alloc] initWithLeaderboardIdentifier:@"com.daletupling.TankGame.Tester"];
     leaderBoardScore.value = scoreTotal;
     
     [GKScore reportScores:@[leaderBoardScore] withCompletionHandler:^(NSError *error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
-
+            
         }
     }];
     
@@ -320,6 +332,45 @@
     if (self.highScores != nil) {
         
     }
+    
+}
+
+-(void)sendAchieveDataToGameCenter {
+    
+    //Completion Percentage
+    float completetion = 0.0;
+    
+    
+    if(scoreTotal >= 100){
+        
+        completetion = scoreTotal * 100 / 100;
+       
+        [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"one_hundred" percentComplete:completetion];
+        
+    }
+    if (scoreTotal >= 200) {
+        
+        completetion = scoreTotal * 100 / 200;
+        
+      [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"two_hundred" percentComplete:completetion];
+        
+    }
+    if (scoreTotal >= 300) {
+        
+        completetion = scoreTotal * 100 / 300;
+        
+        [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"three_hunred" percentComplete:completetion];
+        
+    }
+    
+    if (hits <= 50) {
+        
+        completetion = hits * 100/ 50;
+        
+        [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"destroy_fifty" percentComplete:completetion];
+    }
+    
+
     
 }
 
@@ -429,44 +480,53 @@
         
         
     }], nil]];
-
+    
     
     
     //Launch second missile
     
-    if (constHits >= 5) {
+    if (constHits == 5) {
         
-    
-    if(!CGRectContainsPoint(_tank.boundingBox, touchLoc)){
-        //Add the missile to the view
-        [self addChild:_secondMissile];
+        if  (playerAuth){
+            
+            
+            [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"two_rounds" percentComplete:100.0];
+            
+            
+            
+        }
         
-        [_missiles addObject:_secondMissile];
         
-    }
-    
-    //Get the launch point of the missile and the touch from user interaction
-    //launch missile to touch point
-    
-    int actualXLoc = viewableArea.width + (_secondMissile.contentSize.width/2);
-    float ratio = (float) offset.y / (float) offset.x;
-    int actualYLoc = (actualXLoc * ratio) + _secondMissile.position.y;
-    CGPoint destination = ccp(actualXLoc, actualYLoc);
-    
-    //Get the x and y offset location from the touch point and the origination location of missile.
-    int offsetActualXLoc = actualXLoc - _secondMissile.position.x;
-    int offsetActualYLoc = actualYLoc - _secondMissile.position.y;
-    
-    float length = sqrtf((offsetActualXLoc * offsetActualXLoc) + (offsetActualYLoc * offsetActualYLoc));
-    float veloc = 510/1;
-    float duration = length/veloc;
-    
-    
-    
-    //Launch missle to desination of touch point by user.
-    launchMissle = [CCActionMoveTo actionWithDuration:duration position:destination];
-    
-
+        if(!CGRectContainsPoint(_tank.boundingBox, touchLoc)){
+            //Add the missile to the view
+            [self addChild:_secondMissile];
+            
+            [_missiles addObject:_secondMissile];
+            
+        }
+        
+        //Get the launch point of the missile and the touch from user interaction
+        //launch missile to touch point
+        
+        int actualXLoc = viewableArea.width + (_secondMissile.contentSize.width/2);
+        float ratio = (float) offset.y / (float) offset.x;
+        int actualYLoc = (actualXLoc * ratio) + _secondMissile.position.y;
+        CGPoint destination = ccp(actualXLoc, actualYLoc);
+        
+        //Get the x and y offset location from the touch point and the origination location of missile.
+        int offsetActualXLoc = actualXLoc - _secondMissile.position.x;
+        int offsetActualYLoc = actualYLoc - _secondMissile.position.y;
+        
+        float length = sqrtf((offsetActualXLoc * offsetActualXLoc) + (offsetActualYLoc * offsetActualYLoc));
+        float veloc = 510/1;
+        float duration = length/veloc;
+        
+        
+        
+        //Launch missle to desination of touch point by user.
+        launchMissle = [CCActionMoveTo actionWithDuration:duration position:destination];
+        
+        
         //Run action of launching missile and Call block to remove missile from parent when not in view.
         [_secondMissile runAction:[CCActionSequence actions:launchMissle, [CCActionCallBlock actionWithBlock:^{
             
@@ -481,6 +541,7 @@
             
             
         }], nil]];
+        
         
     }
     
@@ -533,7 +594,7 @@
         }], nil]];
         
     }
-
+    
     
     //[self removeChild:_missile];
     [[OALSimpleAudio sharedInstance] playBg:@"aexp2.wav" loop:NO];
@@ -567,13 +628,13 @@
                 //Increase hits
                 hits++;
                 constHits++;
- 
+                
                 
                 //Multiply hits by 10 to get totalScore
                 if (hits <= 5){
                     
                     scoreTotal = hits * 10;
-
+                    
                 }else if(hits > 5){
                     
                     bonusScore = 15;
@@ -596,13 +657,13 @@
                 
                 
                 
-
+                
                 //Level one max score 300
-               /* if (scoreTotal == 300) {
-                    CCScene *gameOver = [GameOverScene winningScene:YES];
-                    [[CCDirector sharedDirector] replaceScene:gameOver];
-                }
-                */
+                /* if (scoreTotal == 300) {
+                 CCScene *gameOver = [GameOverScene winningScene:YES];
+                 [[CCDirector sharedDirector] replaceScene:gameOver];
+                 }
+                 */
                 
                 
                 

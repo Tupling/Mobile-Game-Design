@@ -21,12 +21,14 @@
  *  Main usage for CCLayer now, is to make colored backgrounds (rectangles)
  *
  */
-@interface IntroScene : CCScene <GKGameCenterControllerDelegate>
+@interface IntroScene : CCScene <GKGameCenterControllerDelegate, GKAchievementViewControllerDelegate>
 
 // -----------------------------------------------------------------------
 
 + (IntroScene *)scene;
 - (id)init;
+
+
 
 // -----------------------------------------------------------------------
 @end

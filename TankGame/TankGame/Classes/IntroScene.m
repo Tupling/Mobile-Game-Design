@@ -43,6 +43,8 @@
     
     [[GameKitSetup sharedGameKit] authCurrentPlayer];
     
+    
+    
     if (!self) return(nil);
     
     // Create a colored background (Dark Grey)
@@ -53,20 +55,20 @@
     CCLabelTTF *label = [CCLabelTTF labelWithString:@" Tank Game " fontName:@"Verdana" fontSize:40.0f];
     label.positionType = CCPositionTypeNormalized;
     label.color = [CCColor redColor];
-    label.position = ccp(0.5f, 0.80f); // Middle of screen
+    label.position = ccp(0.5f, 0.95f); // Middle of screen
     [self addChild:label];
     
     // Helloworld scene button
     CCButton *helloWorldButton = [CCButton buttonWithTitle:@" Play " fontName:@"Verdana-Bold" fontSize:30.0f];
     helloWorldButton.positionType = CCPositionTypeNormalized;
-    helloWorldButton.position = ccp(0.5f, 0.55f);
+    helloWorldButton.position = ccp(0.5f, 0.75f);
     [helloWorldButton setTarget:self selector:@selector(onPlayClicked:)];
     [self addChild:helloWorldButton];
     
     //Credits Button
     CCButton *gameCreditsButton = [CCButton buttonWithTitle:@" Credits " fontName:@"Verdana-Bold" fontSize:18.0f];
     gameCreditsButton.positionType = CCPositionTypeNormalized;
-    gameCreditsButton.position = ccp(0.5f, 0.40f);
+    gameCreditsButton.position = ccp(0.5f, 0.60f);
     [gameCreditsButton setTarget:self selector:@selector(onCreditsClicked:)];
     [self addChild:gameCreditsButton];
     
@@ -74,7 +76,7 @@
     //Credits Button
     CCButton *tutorialButton = [CCButton buttonWithTitle:@" Tutorial " fontName:@"Verdana-Bold" fontSize:18.0f];
     tutorialButton.positionType = CCPositionTypeNormalized;
-    tutorialButton.position = ccp(0.5f, 0.30f);
+    tutorialButton.position = ccp(0.5f, 0.50f);
     [tutorialButton setTarget:self selector:@selector(onTutorialClicked:)];
     [self addChild:tutorialButton];
     
@@ -82,13 +84,19 @@
     //Button
     CCButton *leaderBoardBtn = [CCButton buttonWithTitle:@" Game Center " fontName:@"Verdana-Bold" fontSize:18.0f];
     leaderBoardBtn.positionType = CCPositionTypeNormalized;
-    leaderBoardBtn.position = ccp(0.5f, 0.20f);
+    leaderBoardBtn.position = ccp(0.5f, 0.40f);
     [leaderBoardBtn setTarget:self selector:@selector(onLeaderBoardClicked:)];
     [self addChild:leaderBoardBtn];
     
+    CCButton *achievementBtn = [CCButton buttonWithTitle:@" Achievements " fontName:@"Verdana-Bold" fontSize:18.0f];
+    achievementBtn.positionType = CCPositionTypeNormalized;
+    achievementBtn.position = ccp(0.5f, 0.30f);
+    [achievementBtn setTarget:self selector:@selector(showAchievements:)];
+    [self addChild:achievementBtn];
+    
     CCButton *highScores = [CCButton buttonWithTitle:@" High Scores " fontName:@"Verdana-Bold" fontSize:18.0f];
     highScores.positionType = CCPositionTypeNormalized;
-    highScores.position = ccp(0.5f, 0.10f);
+    highScores.position = ccp(0.5f, 0.20f);
     [highScores setTarget:self selector:@selector(onHighScoreClicked:)];
     [self addChild:highScores];
 
@@ -151,22 +159,49 @@
 -(void)onLeaderBoardClicked:(id)sender
 {
     
+    
+    
     //Set Gamecenter View Controller
     GKGameCenterViewController *gameCenterVC = [[GKGameCenterViewController alloc] init];
     
-    //GameCenter Delegate set
-    gameCenterVC.gameCenterDelegate = self;
+    if(gameCenterVC != nil){
+        //GameCenter Delegate set
+        gameCenterVC.gameCenterDelegate = self;
+        
+        //Select GameCenter viewController
+        //In this game just view the leaderboard
+        gameCenterVC.viewState = GKGameCenterViewControllerStateAchievements;
+        
+        //Set Identifier for GameCenter leaderboard
+        gameCenterVC.leaderboardIdentifier = @"com.daletupling.TankGame.TestLeaderBoard";
+        
+        //Present View controller
+        [[CCDirector sharedDirector] presentViewController:gameCenterVC animated:YES completion:nil];
+    }
+
     
-    //Select GameCenter viewController
-    //In this game just view the leaderboard
-    gameCenterVC.viewState = GKGameCenterViewControllerStateLeaderboards;
-    
-    //Set Identifier for GameCenter leaderboard
-    gameCenterVC.leaderboardIdentifier = @"com.daletupling.TankGame.HighScores";
-    
-    //Present View controller
-    [[CCDirector sharedDirector] presentViewController:gameCenterVC animated:YES completion:nil];
+
 }
+
+- (void)showAchievements:(id)sender
+{
+    GKAchievementViewController *achievements = [[GKAchievementViewController alloc] init];
+    if (achievements != nil)
+    {
+        achievements.achievementDelegate = self;
+        [[CCDirector sharedDirector] presentModalViewController: achievements animated: YES];
+    }
+
+    
+}
+- (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
+{
+    [[CCDirector sharedDirector] dismissModalViewControllerAnimated:YES];
+}
+
+
 
 // -----------------------------------------------------------------------
 @end
+
+

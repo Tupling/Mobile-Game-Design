@@ -18,8 +18,14 @@ extern NSString *const PresentAuthViewController;
 @property (nonatomic) BOOL gameKitEnabeled;
 @property (nonatomic, retain)NSString *leaderBoardID;
 
-+(instancetype) sharedGameKit;
+@property(nonatomic, retain) NSMutableDictionary *achievementsDictionary;
 
-- (void)authCurrentPlayer;
++(GameKitSetup*) sharedGameKit;
+
+-(void)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float)percent;
+
+-(void)resetAchievements;
+
+-(void)authCurrentPlayer;
 
 @end
