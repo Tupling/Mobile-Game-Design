@@ -222,6 +222,8 @@ static HelloWorldScene *instance = nil;
         int rangeDuration = maxSpeed - minSpeed;
         actualSpeed = (arc4random() % rangeDuration) + minSpeed;
         
+       
+        
     } else if (hits > 1 && hits < 4 ){
         
         NSLog(@"Hitting > 3 hits but less then 6");
@@ -231,6 +233,8 @@ static HelloWorldScene *instance = nil;
         int rangeDuration = maxSpeed - minSpeed;
         actualSpeed = (arc4random() % rangeDuration) + minSpeed;
         
+         [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"first_chopper" percentComplete:100.0];
+        
     }else if (hits > 4 && hits < 7){
         
         NSLog(@"Hitting > 6 hits");
@@ -239,6 +243,8 @@ static HelloWorldScene *instance = nil;
         int maxSpeed = 5.0;
         int rangeDuration = maxSpeed - minSpeed;
         actualSpeed = (arc4random() % rangeDuration) + minSpeed;
+        
+        [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"first_wave" percentComplete:100.0];
     }
     else if (hits > 7 ){
         
@@ -248,6 +254,8 @@ static HelloWorldScene *instance = nil;
         int maxSpeed = 3.0;
         int rangeDuration = maxSpeed - minSpeed;
         actualSpeed = (arc4random() % rangeDuration) + minSpeed;
+        
+        [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"second_wave" percentComplete:100.0];
     }
     
     

@@ -173,7 +173,7 @@
         gameCenterVC.viewState = GKGameCenterViewControllerStateAchievements;
         
         //Set Identifier for GameCenter leaderboard
-        gameCenterVC.leaderboardIdentifier = @"com.daletupling.TankGame.TestLeaderBoard";
+        gameCenterVC.leaderboardIdentifier = @"com.daletupling.TankGame.HighScores";
         
         //Present View controller
         [[CCDirector sharedDirector] presentViewController:gameCenterVC animated:YES completion:nil];
