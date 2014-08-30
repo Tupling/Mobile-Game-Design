@@ -222,7 +222,7 @@ static HelloWorldScene *instance = nil;
         int rangeDuration = maxSpeed - minSpeed;
         actualSpeed = (arc4random() % rangeDuration) + minSpeed;
         
-       
+        
         
     } else if (hits > 1 && hits < 4 ){
         
@@ -233,7 +233,7 @@ static HelloWorldScene *instance = nil;
         int rangeDuration = maxSpeed - minSpeed;
         actualSpeed = (arc4random() % rangeDuration) + minSpeed;
         
-         [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"first_chopper" percentComplete:100.0];
+        [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"first_chopper" percentComplete:100.0];
         
     }else if (hits > 4 && hits < 7){
         
@@ -258,6 +258,13 @@ static HelloWorldScene *instance = nil;
         [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"second_wave" percentComplete:100.0];
     }
     
+    if (hits == 30) {
+        
+        float completetion = hits * 100/ 50;
+        
+        [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"destroy_fifty" percentComplete:completetion];
+    }
+    
     
     CCActionMoveTo *moveHeli = [CCActionMoveTo actionWithDuration:actualSpeed position:ccp(-self.helicopter.contentSize.width/2, actualLoc)];
     
@@ -277,16 +284,21 @@ static HelloWorldScene *instance = nil;
         [node removeFromParentAndCleanup:YES];
         if (misses == 1) {
             
-            
-            [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"passed_chopper" percentComplete:100.0];
-            
+            if(playerAuth){
+                
+                [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"passed_chopper" percentComplete:100.0];
+            }
         }
         
         //Set losing condition
         if (misses == 3) {
-            //Run method to submit score to leaderboard
             
-            [self sendAchieveDataToGameCenter];
+            //Run method to submit score to leaderboard
+            if (playerAuth) {
+                
+                [self sendAchieveDataToGameCenter];
+            }
+            
             
             
             //Change scene to gameOver scene
@@ -352,7 +364,7 @@ static HelloWorldScene *instance = nil;
     if(scoreTotal >= 100){
         
         completetion = scoreTotal * 100 / 100;
-       
+        
         [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"one_hundred" percentComplete:completetion];
         
     }
@@ -360,7 +372,7 @@ static HelloWorldScene *instance = nil;
         
         completetion = scoreTotal * 100 / 200;
         
-      [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"two_hundred" percentComplete:completetion];
+        [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"two_hundred" percentComplete:completetion];
         
     }
     if (scoreTotal >= 300) {
@@ -371,14 +383,9 @@ static HelloWorldScene *instance = nil;
         
     }
     
-    if (hits <= 50) {
-        
-        completetion = hits * 100/ 50;
-        
-        [[GameKitSetup sharedGameKit] reportAchievementIdentifier:@"destroy_fifty" percentComplete:completetion];
-    }
     
-
+    
+    
     
 }
 
